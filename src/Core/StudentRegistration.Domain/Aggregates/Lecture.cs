@@ -6,6 +6,7 @@ public class Lecture :AggregateRoot
 	private Classroom _classroom;
 	private Term _term;
 	private Course _course;
+
 	public Lecture()
 	{
 		

@@ -4,7 +4,6 @@ public class Term : AggregateRoot
 {
 	private Semester _semester;
 	private TermStatus _status;
-	private ICollection<Lecture> _lectures;
 	private bool _isEnrollmentActive;
 
 	public void StartTerm(){
@@ -21,6 +20,19 @@ public class Term : AggregateRoot
 			//throw ex
 		}
 		_status = TermStatus.Completed;
+		//this must be event
+		/*
+		foreach(Lecture lecture in _lectures)
+		{
+			foreach (StudentRecord sr in lecture.StudentRecords)
+			{
+				if(sr.Grade == Grade.None)
+				{
+					sr.SetNewGrade(Grade.NA);
+				}
+			}
+		}*/
+		//
 		//Throw term ended
 	}
 	public void OpenEnrollment()

@@ -2,69 +2,65 @@ namespace StudentRegistration.Domain.Aggregates;
 
 public class Term : AggregateRoot
 {
+	private string _termId;
 	private Semester _semester;
 	private TermStatus _status;
 	private bool _isEnrollmentActive;
+	private List<TermDailySlots> _lectureDays;
+	private int _slotDuration;
+
 
 	public void StartTerm(){
 		_status = TermStatus.Active;
 		_isEnrollmentActive = false;
-		//Throw new term started event
+		
+		AddDomainEvent(new TermStartedDomainEvent{
+			LectureDays = _lectureDays
+		});
 	}
 	public void EndTerm()
 	{
 		if(_status == TermStatus.Completed){
-			//throw ex
+			throw new Exception("This term is already ended");
 		}
 		if(_isEnrollmentActive == true){
-			//throw ex
+			throw new Exception("Term cannot be ended if enrollment is still active");
 		}
 		_status = TermStatus.Completed;
-		//this must be event
-		/*
-		foreach(Lecture lecture in _lectures)
-		{
-			foreach (StudentRecord sr in lecture.StudentRecords)
-			{
-				if(sr.Grade == Grade.None)
-				{
-					sr.SetNewGrade(Grade.NA);
-				}
-			}
-		}*/
-		//
-		//Throw term ended
+
+		AddDomainEvent(new TermEndedDomainEvent{
+			TermId=_termId
+		});
 	}
 	public void OpenEnrollment()
 	{
 		if(_status != TermStatus.Active)
 		{
-			//throw ex
+			throw new Exception("Only active terms can be opened to enrollment");
 		}
 		if(_isEnrollmentActive != false)
 		{
-			//throw ex
+			throw new Exception("This term is already open to enrollment");
 		}
 		_isEnrollmentActive = true;
-		//throw enrollment started event
 	}
 	public void CloseEnrollment()
 	{
 		if(_status != TermStatus.Active)
 		{
-			//throw ex
+			throw new Exception("Only active terms can be closed to enrollment");
 		}
 		if(_isEnrollmentActive != true)
 		{
-			//throw ex
+			throw new Exception("This term is already close to enrollment");
 		}
 		_isEnrollmentActive = false;
-		//throw enrollment closed event
 	}
-	public Term (Semester semester)
+	public Term (Semester semester, List<TermDailySlots> lectureDays)
 	{
 		_semester= semester;
 		_status = TermStatus.Waiting;
 		_isEnrollmentActive = false;
+		_lectureDays = lectureDays;
 	}
 }

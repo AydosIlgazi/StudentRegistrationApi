@@ -1,8 +1,9 @@
 namespace StudentRegistration.Domain.Aggregates;
 
-public class Classroom : BaseEntity {
+public class ClassroomDTO  {
+	public string ClassroomId{get;}
 	private string _code;
 	private Building _building;
-	private int _capacity;
+	public int Capacity{get;}
 
 }

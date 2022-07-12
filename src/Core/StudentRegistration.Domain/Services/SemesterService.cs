@@ -7,7 +7,6 @@ public class SemesterService
 		var nextSemesterType = FindNextSemesterType(latestSemester.SemesterType);
 		if(nextSemesterType != newSemester.SemesterType) throw new Exception("Invalid semester");
 		if(newSemester.Year < latestSemester.Year) throw new Exception ("Invalid");
-		newSemester.StartSemester();
 		return newSemester;
 	}
 

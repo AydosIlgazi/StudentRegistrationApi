@@ -17,6 +17,23 @@ public class SlotTest
             },
         };
 
+    public static TheoryData<Slot,int> SlotDurationData=>
+        new TheoryData<Slot, int>
+        {
+            {
+                new Slot(new SlotTime{Hour=9, Miniute=0}, new SlotTime{Hour=9, Miniute=45}),
+                45
+            },
+            {
+                new Slot(new SlotTime{Hour=9, Miniute=0}, new SlotTime{Hour=10, Miniute=45}),
+                105
+            },
+            {
+                new Slot(new SlotTime{Hour=9, Miniute=50}, new SlotTime{Hour=10, Miniute=25}),
+                35
+            }
+        };
+
     [Fact]
     public void Create_Slot_Object_Success()
     {
@@ -44,5 +61,17 @@ public class SlotTest
     {
         Assert.Throws<Exception>(() => new Slot(start, end));
          
+    }
+
+    [Theory]
+    [MemberData(nameof(SlotDurationData))]
+    public void Slot_Duration_Is_Calculated_Correctly(Slot slot, int duration)
+    {
+
+        //Act
+        int calculatedDuration = slot.CalculateSlotDuration();
+
+        //Assert
+        Assert.Equal(calculatedDuration,duration);
     }
 }

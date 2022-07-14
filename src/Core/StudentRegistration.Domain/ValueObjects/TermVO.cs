@@ -6,5 +6,5 @@ public class TermVO
     public TermStatus TermStatus{get;}
     public bool IsEnrollmentActive{get;}
 
-    public List<TermDailySlots> DailySlots{get;}
+    public TermWeeklySlots LectureDaysAndSlots{get;}
 }

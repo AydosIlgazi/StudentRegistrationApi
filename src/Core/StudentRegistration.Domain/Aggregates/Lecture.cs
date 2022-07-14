@@ -2,7 +2,7 @@ namespace StudentRegistration.Domain.Aggregates;
 
 public class Lecture :AggregateRoot
 {
-	private string _lecturerId;
+	private string? _lecturerId;
 	private string _termId;
 	private List<Classroom> _lectureClassSlots;
 	private string _courseId;
@@ -81,6 +81,5 @@ public class Lecture :AggregateRoot
 			LecturerId = _lecturerId,
 			DaySlots = daySlots
 		});
-		//new lecturer assigned event
 	}
 }

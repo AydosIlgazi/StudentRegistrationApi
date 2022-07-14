@@ -12,7 +12,7 @@ public class Schedule : BaseEntity
         _scheduleSlots = new List<DaySlot>();
         _isActive = true;
         _termId = term.TermId;
-        foreach(TermDailySlots ds in term.DailySlots){
+        foreach(DailySlots ds in term.LectureDaysAndSlots.DailySlots){
             foreach(Slot s in ds.Slots){
                 _scheduleSlots.Add(new DaySlot{
                     Day = ds.Day,

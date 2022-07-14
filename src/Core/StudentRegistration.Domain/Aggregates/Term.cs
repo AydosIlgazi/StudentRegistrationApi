@@ -2,11 +2,10 @@ namespace StudentRegistration.Domain.Aggregates;
 
 public class Term : AggregateRoot
 {
-	private string _termId;
 	private Semester _semester;
 	private TermStatus _status;
 	private bool _isEnrollmentActive;
-	private List<TermDailySlots> _lectureDays;
+	private TermWeeklySlots _lectureDaysAndSlots;
 	private int _slotDuration;
 
 
@@ -15,7 +14,7 @@ public class Term : AggregateRoot
 		_isEnrollmentActive = false;
 		
 		AddDomainEvent(new TermStartedDomainEvent{
-			LectureDays = _lectureDays
+			LectureDays = _lectureDaysAndSlots
 		});
 	}
 	public void EndTerm()
@@ -29,7 +28,7 @@ public class Term : AggregateRoot
 		_status = TermStatus.Completed;
 
 		AddDomainEvent(new TermEndedDomainEvent{
-			TermId=_termId
+			TermId=base.Id
 		});
 	}
 	public void OpenEnrollment()
@@ -56,11 +55,11 @@ public class Term : AggregateRoot
 		}
 		_isEnrollmentActive = false;
 	}
-	public Term (Semester semester, List<TermDailySlots> lectureDays)
+	public Term (Semester semester, TermWeeklySlots lectureDaysAndSlots)
 	{
 		_semester= semester;
 		_status = TermStatus.Waiting;
 		_isEnrollmentActive = false;
-		_lectureDays = lectureDays;
+		_lectureDaysAndSlots = lectureDaysAndSlots;
 	}
 }

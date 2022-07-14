@@ -1,10 +1,10 @@
 namespace StudentRegistration.Domain.ValueObjects;
-public class TermDailySlots : ValueObject
+public class DailySlots : ValueObject
 {
     public Day Day{get; init;} 
     private List<Slot> _slots;
     public IReadOnlyCollection<Slot> Slots => _slots;
-    public TermDailySlots(List<Slot> slots)
+    public DailySlots(List<Slot> slots)
     {
         slots.Sort();
         Slot prevSlot = default(Slot);
@@ -16,7 +16,7 @@ public class TermDailySlots : ValueObject
             }
             else{
                 if(prevSlot.EndTime.CompareTo(nextSlot.StartTime)>1){
-                    //slots are intercepting
+                    throw new Exception("Slots are intercepting");
                 }
             }
             prevSlot= nextSlot;

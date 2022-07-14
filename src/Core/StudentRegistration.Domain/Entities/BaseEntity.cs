@@ -1,6 +1,6 @@
 namespace StudentRegistration.Domain.Entities;
 
 public abstract class BaseEntity {
-    public Guid Id {get; private set;}
+    public int Id {get; set;}
 }
 

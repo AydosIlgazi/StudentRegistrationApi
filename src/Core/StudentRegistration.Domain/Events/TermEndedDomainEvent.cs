@@ -3,6 +3,6 @@ namespace StudentRegistration.Domain.Events;
 // make schedules is active false
 public class TermEndedDomainEvent : INotification
 {
-    public string TermId {get;init;}
+    public int TermId {get;init;}
 
 }

@@ -8,7 +8,7 @@ public class Classroom : BaseEntity{
     {
         _classroomId = classroomId;
         _classSlots = new List<DaySlot>();
-        foreach(TermDailySlots ds in term.DailySlots){
+        foreach(DailySlots ds in term.LectureDaysAndSlots.DailySlots){
             foreach(Slot s in ds.Slots){
                 _classSlots.Add(new DaySlot{
                     Day = ds.Day,

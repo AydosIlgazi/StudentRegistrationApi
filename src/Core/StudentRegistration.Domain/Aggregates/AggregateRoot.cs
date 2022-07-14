@@ -1,8 +1,8 @@
 namespace StudentRegistration.Domain.Aggregates;
 
 public class AggregateRoot : BaseEntity {
-    private List<INotification> _domainEvents;
-    public IReadOnlyCollection<INotification> DomainEvents => _domainEvents;
+    private List<INotification>? _domainEvents;
+    public IReadOnlyCollection<INotification>? DomainEvents => _domainEvents;
 
     public void AddDomainEvent(INotification eventItem)
     {

@@ -62,6 +62,7 @@ public class Student  : AggregateRoot
 		_schedules = new List<Schedule>();
 		_schedules.Add(schedule);
 		_enrollments = new List<Enrollment>();
+		_studentId = studenId;
 	}
 
 }

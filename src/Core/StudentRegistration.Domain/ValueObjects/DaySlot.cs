@@ -4,7 +4,7 @@ public class DaySlot :ValueObject
 {
     public Day Day {get; init;}
     public Slot Slot{get; init;}
-    public bool IsAvailable{get; init;};
+    public bool IsAvailable{get; init;}
 
 
     protected override IEnumerable<object> GetEqualityComponents()

@@ -11,7 +11,7 @@ public class TermWeeklySlots : BaseEntity
               .Where(g => g.Count() > 1)
               .Select(y => y.Key)
               .ToList();
-        if(duplicateElements != null)
+        if(duplicateElements.Count>0)
         {
             throw new Exception("Duplicate day");
         }

@@ -21,6 +21,7 @@ public class DailySlots : ValueObject
             }
             prevSlot= nextSlot;
         }
+        _slots = slots;
     }
 
     protected override IEnumerable<object> GetEqualityComponents()

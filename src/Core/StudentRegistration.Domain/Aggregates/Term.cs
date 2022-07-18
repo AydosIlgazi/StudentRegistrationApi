@@ -8,8 +8,15 @@ public class Term : AggregateRoot
 	private TermWeeklySlots _lectureDaysAndSlots;
 	private int _slotDuration;
 
+	public TermStatus Status => _status;
+	public bool IsEnrollmentActive => _isEnrollmentActive;
+	public TermWeeklySlots LectureDaysAndSlots => _lectureDaysAndSlots;
 
 	public void StartTerm(){
+		if(_status == TermStatus.Active){
+			throw new Exception("This term is already started");
+		}
+
 		_status = TermStatus.Active;
 		_isEnrollmentActive = false;
 		
@@ -21,9 +28,6 @@ public class Term : AggregateRoot
 	{
 		if(_status == TermStatus.Completed){
 			throw new Exception("This term is already ended");
-		}
-		if(_isEnrollmentActive == true){
-			throw new Exception("Term cannot be ended if enrollment is still active");
 		}
 		_status = TermStatus.Completed;
 

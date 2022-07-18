@@ -21,15 +21,15 @@ public class SlotTest
         new TheoryData<Slot, int>
         {
             {
-                new Slot(new SlotTime{Hour=9, Miniute=0}, new SlotTime{Hour=9, Miniute=45}),
+                new SlotBuilder().WithStartTime(9,0).WithEndTime(9,45).Build(),
                 45
             },
             {
-                new Slot(new SlotTime{Hour=9, Miniute=0}, new SlotTime{Hour=10, Miniute=45}),
+                new SlotBuilder().WithStartTime(9,0).WithEndTime(10,45).Build(),
                 105
             },
             {
-                new Slot(new SlotTime{Hour=9, Miniute=50}, new SlotTime{Hour=10, Miniute=25}),
+                new SlotBuilder().WithStartTime(9,50).WithEndTime(10,25).Build(),
                 35
             }
         };
@@ -59,6 +59,7 @@ public class SlotTest
     [MemberData(nameof(InvalidSlotTimeData))]
     public void Invalid_Slot_Creation_With_EndDate_Is_Earlier_Than_StartDate(SlotTime start, SlotTime end)
     {
+        //Act && Assert
         Assert.Throws<Exception>(() => new Slot(start, end));
          
     }

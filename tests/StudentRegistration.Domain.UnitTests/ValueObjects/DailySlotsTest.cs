@@ -1,4 +1,4 @@
-namespace StudentRegistration.Domain.ValueObjects;
+namespace StudentRegistration.Domain.UnitTests.ValueObjects;
 
 public class DailySlotsTests 
 {
@@ -6,14 +6,14 @@ public class DailySlotsTests
         new TheoryData<List<Slot>>
         {
                 new List<Slot>{ 
-                    new Slot(new SlotTime{Hour=9, Miniute=45}, new SlotTime{Hour=10, Miniute=45}),
-                    new Slot(new SlotTime{Hour=10, Miniute=45}, new SlotTime{Hour=11, Miniute=45}),
-                    new Slot(new SlotTime{Hour=8, Miniute=45}, new SlotTime{Hour=9, Miniute=45})
+                    new SlotBuilder().WithStartTime(9,45).WithEndTime(10,45).Build(),
+                    new SlotBuilder().WithStartTime(10,45).WithEndTime(11,45).Build(),
+                    new SlotBuilder().WithStartTime(8,45).WithEndTime(9,45).Build()
                     },
                 new List<Slot>{ 
-                    new Slot(new SlotTime{Hour=15, Miniute=30}, new SlotTime{Hour=16, Miniute=15}),
-                    new Slot(new SlotTime{Hour=9, Miniute=0}, new SlotTime{Hour=9, Miniute=45}),
-                    new Slot(new SlotTime{Hour=10, Miniute=45}, new SlotTime{Hour=11, Miniute=30})
+                    new SlotBuilder().WithStartTime(15,30).WithEndTime(16,15).Build(),
+                    new SlotBuilder().WithStartTime(9,0).WithEndTime(9,45).Build(),
+                    new SlotBuilder().WithStartTime(10,45).WithEndTime(11,30).Build()
                     },
             
         };
@@ -22,17 +22,18 @@ public class DailySlotsTests
         new TheoryData<List<Slot>>
         {
                 new List<Slot>{ 
-                    new Slot(new SlotTime{Hour=9, Miniute=0}, new SlotTime{Hour=9, Miniute=45}),
-                    new Slot(new SlotTime{Hour=9, Miniute=44}, new SlotTime{Hour=10, Miniute=30}),
-                    new Slot(new SlotTime{Hour=10, Miniute=30}, new SlotTime{Hour=11, Miniute=15})
+                    new SlotBuilder().WithStartTime(9,0).WithEndTime(9,45).Build(),
+                    new SlotBuilder().WithStartTime(9,44).WithEndTime(10,30).Build(),
+                    new SlotBuilder().WithStartTime(10,30).WithEndTime(11,15).Build()
                     },
                 new List<Slot>{ 
-                    new Slot(new SlotTime{Hour=9, Miniute=30}, new SlotTime{Hour=10, Miniute=30}),
-                    new Slot(new SlotTime{Hour=10, Miniute=45}, new SlotTime{Hour=11, Miniute=45}),
-                    new Slot(new SlotTime{Hour=8, Miniute=45}, new SlotTime{Hour=9, Miniute=45})
+                    new SlotBuilder().WithStartTime(9,30).WithEndTime(10,30).Build(),
+                    new SlotBuilder().WithStartTime(10,45).WithEndTime(11,45).Build(),
+                    new SlotBuilder().WithStartTime(8,45).WithEndTime(9,45).Build()
                     }
             
         };
+
 
     [Theory]
     [MemberData(nameof(ValidDailySlotsData))]
@@ -49,7 +50,7 @@ public class DailySlotsTests
     [MemberData(nameof(InvalidDailySlotsData))]
     public void invalid_daily_slots_with_intercepting_slots(List<Slot> slots)
     {
-        //assert
+        //act && assert
         Assert.Throws<Exception>(() =>new DailySlots(slots));
     }
 }

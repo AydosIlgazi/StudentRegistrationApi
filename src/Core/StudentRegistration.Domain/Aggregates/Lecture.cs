@@ -3,43 +3,35 @@ namespace StudentRegistration.Domain.Aggregates;
 public class Lecture :AggregateRoot
 {
 	private string? _lecturerId;
-	private string _termId;
-	private List<Classroom> _lectureClassSlots;
+	private int _termId;
+	private List<Section> _lectureSections;
 	private string _courseId;
 	private int _capacity;
+	private int _totalMinutesWeekly;
 
-	public Lecture(TermVO term, List<Classroom> lectureClassSlots, List<ClassroomDTO> classrooms, CourseDTO course,int capacity)
+	public List<Section> LectureSections => _lectureSections;
+
+	public string LecturerId => _lecturerId;
+
+	public Lecture(TermVO term, CourseDTO course,int capacity)
 	{
 		if(term.TermStatus != TermStatus.Active)
 		{
 			throw new Exception("Lecture can be opened in only active terms");
 		}
 
-		if(GetTotalLectureDuration()>course.TotalMinutesWeekly){
-			throw new Exception("Lecture duration cannot exceed the total course duration");
-		}
-
-		int maxCapacity = int.MaxValue;
-		foreach(ClassroomDTO classroom in classrooms)
-		{
-			if(classroom.Capacity < maxCapacity)
-				maxCapacity = classroom.Capacity;
-		}
-		if(capacity > maxCapacity)
-		{
-			throw new Exception ("Lecture Capacity can not exceed the one of the classrooms capacity");
-		}
 		_termId = term.TermId;
-		_lectureClassSlots = lectureClassSlots;
 		_courseId = course.CourseId;
 		_capacity = capacity;
+		_totalMinutesWeekly = course.TotalMinutesWeekly;
+		_lectureSections = new List<Section>();
 	}
 
 	public int GetTotalLectureDuration()
 	{
 		int totalMinutes = 0;
-		foreach(Classroom c in _lectureClassSlots){
-			foreach(DaySlot ds in c.ClassSlots)
+		foreach(Section s in _lectureSections){
+			foreach(DaySlot ds in s.SectionSlots)
 			{
 				totalMinutes += ds.Slot.CalculateSlotDuration();
 
@@ -48,31 +40,34 @@ public class Lecture :AggregateRoot
 		return totalMinutes;
 	}
 
-	public void AddSectionToLecture(DaySlot daySlot, Classroom lectureClassSlot, ClassroomDTO classroom,CourseDTO course)
+	public void AddSectionToLecture( Section section, ClassroomDTO classroom)
 	{
-		int additionalDuration = daySlot.Slot.CalculateSlotDuration();
-		if(GetTotalLectureDuration()+ additionalDuration > course.TotalMinutesWeekly){
+		int additionalDuration =0;
+		foreach(DaySlot ds in section.SectionSlots)
+		{
+			additionalDuration += ds.Slot.CalculateSlotDuration();
+		}
+		if(GetTotalLectureDuration()+ additionalDuration > _totalMinutesWeekly){
 			throw new Exception("Lecture duration cannot exceedde defined course duration");
 		}
 		if(classroom.Capacity<_capacity)
 		{
 			throw new Exception ("Lecture Capacity can not exceed the one of the classrooms capacity");
 		}
-		_lectureClassSlots.Add(lectureClassSlot);
+		_lectureSections.Add(section);
+		AddDomainEvent(new SectionAddedToLectureDomainEvent{
+			DaySlots = section.SectionSlots
+		});
 	}
 	
-	public void AssignLecturerToLecture(LecturerVO lecturer, CourseDTO course)
+	public void AssignLecturerToLecture(LecturerVO lecturer)
 	{
-		if(GetTotalLectureDuration() != course.TotalMinutesWeekly){
+		if(GetTotalLectureDuration() != _totalMinutesWeekly){
 			throw new Exception("Complete all slots before assigning the lecturer ");
 		}
 		List<DaySlot> daySlots = new List<DaySlot>();
-		foreach(Classroom c in _lectureClassSlots){
-			foreach(DaySlot ds in c.ClassSlots){
-				if(lecturer.Schedule.IsScheduleAvailable(ds.Slot,ds.Day)== false)
-				{
-					throw new Exception ("Lecturer is not available during slot");
-				}
+		foreach(Section s in _lectureSections){
+			foreach(DaySlot ds in s.SectionSlots){
 				daySlots.Add(ds);
 			}
 		}

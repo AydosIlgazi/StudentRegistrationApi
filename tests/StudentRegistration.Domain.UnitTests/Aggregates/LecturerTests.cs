@@ -3,20 +3,16 @@ namespace StudentRegistration.Domain.UnitTests.Aggregates;
 public class LecturerTests
 {
     private const string lecturerId = "1234567";
-    public static TheoryData<TermVO> TermVO=>
-        new TheoryData<TermVO>
-        {
-            new TermVO{
-                TermId = "1",
-                LectureDaysAndSlots = new TermBuilder().Build().LectureDaysAndSlots
-            }
-        };
+    private const int termId=12;
 
-    [Theory]
-    [MemberData(nameof(TermVO))]
-    public void create_new_lecturer_with_term(TermVO term)
+    [Fact]
+    public void create_new_lecturer_with_term()
     {
         //Arrange
+        TermVO term =  new TermVO{
+                TermId = termId,
+                LectureDaysAndSlots = new TermBuilder().Build().LectureDaysAndSlots
+        };
         Schedule lecturerSchedule = new Schedule(term);
 
         //Act
@@ -26,11 +22,14 @@ public class LecturerTests
         Assert.NotNull(lecturer);
     }
 
-    [Theory]
-    [MemberData(nameof(TermVO))]
-    public void adding_same_term_multiple_times_to_lecture_throws_exception(TermVO term)
+    [Fact]
+    public void adding_same_term_multiple_times_to_lecture_is_invalid()
     {
         //Arrange
+        TermVO term =  new TermVO{
+                TermId = termId,
+                LectureDaysAndSlots = new TermBuilder().Build().LectureDaysAndSlots
+        };
         Schedule lecturerSchedule = new Schedule(term);
         Lecturer lecturer = new Lecturer(lecturerId,lecturerSchedule);
 

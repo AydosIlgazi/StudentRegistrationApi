@@ -94,7 +94,7 @@ public class TermTest
     }
 
     [Fact]
-    public void starting_active_term_throws_exception()
+    public void starting_active_term_is_invalid()
     {
         // Arrange
         Term term = new TermBuilder().Build();
@@ -129,7 +129,7 @@ public class TermTest
     }
 
     [Fact]
-    public void ending_completed_term_throws_exception()
+    public void ending_completed_term_is_invalid()
     {
         // Arrange
         Term term = new TermBuilder().Build();
@@ -155,7 +155,7 @@ public class TermTest
     }
 
     [Fact]
-    public void open_enrollment_throws_exception_when_term_status_is_waiting()
+    public void open_enrollment_is_invalid_when_term_status_is_waiting()
     {
         //Arrange
         Term term = new TermBuilder().Build();
@@ -165,7 +165,7 @@ public class TermTest
 
     }
     [Fact]
-    public void open_enrollment_throws_exception_when_term_status_is_completed()
+    public void open_enrollment_is_invalid_when_term_status_is_completed()
     {
         //Arrange
         Term term = new TermBuilder().Build();
@@ -177,7 +177,7 @@ public class TermTest
     }
 
     [Fact]
-    public void open_enrollment_throws_exception_when_enrollment_has_already_opened()
+    public void open_enrollment_is_invalid_when_enrollment_has_already_opened()
     {
         //Arrange
         Term term = new TermBuilder().Build();
@@ -206,7 +206,7 @@ public class TermTest
     }
 
     [Fact]
-    public void close_enrollment_throws_exception_when_term_status_is_waiting()
+    public void close_enrollment_is_invalid_when_term_status_is_waiting()
     {
         //Arrange
         Term term = new TermBuilder().Build();
@@ -217,7 +217,7 @@ public class TermTest
     }
 
     [Fact]
-    public void close_enrollment_throws_exception_when_term_status_is_completed()
+    public void close_enrollment_is_invalid_when_term_status_is_completed()
     {
         //Arrange
         Term term = new TermBuilder().Build();
@@ -229,7 +229,7 @@ public class TermTest
     }
 
     [Fact]
-    public void close_enrollment_throws_exception_when_enrollment_has_already_closed()
+    public void close_enrollment_is_invalid_when_enrollment_has_already_closed()
     {
         //Arrange
         Term term = new TermBuilder().Build();

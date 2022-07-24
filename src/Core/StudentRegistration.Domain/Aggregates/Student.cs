@@ -22,15 +22,15 @@ public class Student  : AggregateRoot
 		if(activeSchedule == null){
 			throw new Exception("You cannot enroll classes in this term");
 		}
-		foreach(Classroom c in lecture.LectureClassSlots){
-			foreach(DaySlot ds in c.ClassSlots){
+		foreach(Section s in lecture.LectureSections){
+			foreach(DaySlot ds in s.SectionSlots){
 				if(activeSchedule.IsScheduleAvailable(ds.Slot,ds.Day)== false)
 				{
 					throw new Exception ("your schedule is not available for this lecture");
 				}
 				
 			}
-			activeSchedule.FillTheSchedule(c.ClassSlots);
+			activeSchedule.FillTheSchedule(s.SectionSlots);
 		}
 
 		//check student records(min credit and prerequisites)

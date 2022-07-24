@@ -4,6 +4,7 @@ public class TermBuilder
 {
     private Semester _semester;
 	private TermWeeklySlots _lectureDaysAndSlots;
+    private TermStatus _termStatus;
 
     public TermBuilder()
     {
@@ -17,6 +18,7 @@ public class TermBuilder
             new DailySlotsBuilder().WithDay(Day.Friday).Build(),
         };
         _lectureDaysAndSlots = new TermWeeklySlots(dailySlots);
+
     }
 
     public Term Build()

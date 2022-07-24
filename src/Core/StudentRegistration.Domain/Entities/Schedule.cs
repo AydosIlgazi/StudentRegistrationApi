@@ -2,10 +2,10 @@ namespace StudentRegistration.Domain.Entities;
 
 public class Schedule : BaseEntity
 {
-    private string _termId;
+    private int _termId;
     private List<DaySlot> _scheduleSlots;
     private bool _isActive;
-    public string TermId =>_termId;
+    public int TermId =>_termId;
     public bool IsActive => _isActive;
     public Schedule(TermVO term)
     {

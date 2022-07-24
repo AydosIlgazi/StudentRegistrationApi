@@ -3,9 +3,10 @@ namespace StudentRegistration.Domain.Aggregates;
 public class Consent : AggregateRoot
 {
 	private string _lectureId;
-
 	private string _studentId;
 	private ConsentStatus _consentStatus;
+
+	public ConsentStatus ConsentStatus => _consentStatus;
 
 	public Consent(string lectureId, string studentId)
 	{

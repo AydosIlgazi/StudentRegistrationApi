@@ -37,7 +37,11 @@ public class Classroom : AggregateRoot
                 Slot = ds.Slot,
                 IsAvailable = false,
             };
-            _daySlot = reservedSlot;
+            var index = _classSlots.IndexOf(_daySlot);
+
+            if (index != -1)
+                _classSlots[index] = reservedSlot;
+
         }
 
     }

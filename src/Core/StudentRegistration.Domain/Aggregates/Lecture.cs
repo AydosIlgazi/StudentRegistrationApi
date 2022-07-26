@@ -77,4 +77,5 @@ public class Lecture :AggregateRoot
 			DaySlots = daySlots
 		});
 	}
+
 }

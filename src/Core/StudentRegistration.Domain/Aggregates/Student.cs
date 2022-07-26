@@ -6,7 +6,9 @@ public class Student  : AggregateRoot
 	private List<Schedule> _schedules;
 
 	private List<Enrollment> _enrollments;
-
+	
+	public IReadOnlyCollection<Enrollment> Enrollments => _enrollments;
+	public IReadOnlyCollection<Schedule> Schedules => _schedules;
 
 	public void EnrollToLecture(LectureVO lecture, Enrollment enrollment)
 	{
@@ -38,13 +40,13 @@ public class Student  : AggregateRoot
 		//check distance between consecutive slots
 
 		_enrollments.Add(enrollment);
-		AddDomainEvent(new StudentEnrollmentCompletedDomainEvent{
+		AddDomainEvent(new StudentEnrollmentCreatedDomainEvent{
 			StudentId = _studentId,
 			LectureId = lecture.LectureId
 		});
 
 	}
-	public void RemoveEnrollment(string lectureId)
+	public void RemoveEnrollment(int lectureId)
 	{
 		var enrollment = _enrollments.Where(e=>e.LectureId == lectureId).FirstOrDefault();
 		if(enrollment == null)

@@ -2,10 +2,10 @@ namespace StudentRegistration.Domain.Entities;
 
 public class Enrollment : BaseEntity
 {
-    private string _lectureId;
+    private int _lectureId;
     private EnrollmentStatus _enrollmentStatus;
 
-    public string LectureId=>_lectureId;
+    public int LectureId =>_lectureId;
     public EnrollmentStatus EnrollmentStatus =>_enrollmentStatus;
 
     public Enrollment(LectureVO lecture , TermVO term, int currentEnrollmentCount)

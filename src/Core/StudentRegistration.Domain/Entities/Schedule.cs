@@ -7,6 +7,7 @@ public class Schedule : BaseEntity
     private bool _isActive;
     public int TermId =>_termId;
     public bool IsActive => _isActive;
+    public IReadOnlyCollection<DaySlot> ScheduleSlots => _scheduleSlots;
     public Schedule(TermVO term)
     {
         _scheduleSlots = new List<DaySlot>();
@@ -36,11 +37,21 @@ public class Schedule : BaseEntity
         foreach(DaySlot ds in daySlots)
         {
             var _daySlot =_scheduleSlots.Where(ss=>ss.Day ==ds.Day && ss.Slot==ds.Slot).FirstOrDefault();
-            _daySlot = new DaySlot{
+            DaySlot daySlot = new DaySlot{
                 Day=ds.Day,
                 Slot=ds.Slot,
                 IsAvailable = false
             };
+
+            var index = _scheduleSlots.IndexOf(_daySlot);
+
+            if (index != -1)
+                _scheduleSlots[index] = daySlot;
         }
+    }
+
+    public void EndSchedule()
+    {
+        _isActive = false;
     }
 }

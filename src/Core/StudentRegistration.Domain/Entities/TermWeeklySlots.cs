@@ -13,7 +13,7 @@ public class TermWeeklySlots : BaseEntity
               .ToList();
         if(duplicateElements.Count>0)
         {
-            throw new Exception("Duplicate day");
+            throw new StudentRegistrationDomainException("Duplicate day");
         }
         _dailySlots = dailySlots;
     }

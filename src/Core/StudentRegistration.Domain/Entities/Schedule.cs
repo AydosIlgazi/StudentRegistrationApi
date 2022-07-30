@@ -27,7 +27,7 @@ public class Schedule : BaseEntity
     {
         var _daySlot =_scheduleSlots.FirstOrDefault(ss => ss.Day == day && ss.Slot == slot);
         if(_daySlot == null){
-            throw new Exception("This day and slot is not usable in this term");
+            throw new StudentRegistrationDomainException("This day and slot is not usable in this term");
         }
         return _daySlot.IsAvailable;
          

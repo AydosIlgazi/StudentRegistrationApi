@@ -15,20 +15,20 @@ public class Student  : AggregateRoot
 		var _enrollment = _enrollments.FirstOrDefault(e=> e.LectureId == lecture.LectureId && e.EnrollmentStatus != EnrollmentStatus.Left);
 		if(_enrollment != null)
 		{
-			throw new Exception ("You have active or completed enrollment to this lecture");
+			throw new StudentRegistrationDomainException ("You have active or completed enrollment to this lecture");
 		}
 		//check lecture is exist in course plan
 
 		//check student schedule available
 		var activeSchedule = _schedules.FirstOrDefault(s=> s.IsActive == true);
 		if(activeSchedule == null){
-			throw new Exception("You cannot enroll classes in this term");
+			throw new StudentRegistrationDomainException("You cannot enroll classes in this term");
 		}
 		foreach(Section s in lecture.LectureSections){
 			foreach(DaySlot ds in s.SectionSlots){
 				if(activeSchedule.IsScheduleAvailable(ds.Slot,ds.Day)== false)
 				{
-					throw new Exception ("your schedule is not available for this lecture");
+					throw new StudentRegistrationDomainException ("your schedule is not available for this lecture");
 				}
 				
 			}
@@ -51,7 +51,7 @@ public class Student  : AggregateRoot
 		var enrollment = _enrollments.FirstOrDefault(e=>e.LectureId == lectureId);
 		if(enrollment == null)
 		{
-			throw new Exception("You are not enrolled this lecture");
+			throw new StudentRegistrationDomainException("You are not enrolled this lecture");
 		}
 		enrollment.CancelEnrollment();
 		AddDomainEvent(new StudentEnrollmentCanceledDomainEvent{

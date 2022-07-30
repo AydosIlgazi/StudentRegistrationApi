@@ -11,7 +11,7 @@ public class Section : BaseEntity{
             .Select(g => g.Key)
             .ToList();
         if(duplicates.Count>0){
-            throw new Exception("Duplicate slots");
+            throw new StudentRegistrationDomainException("Duplicate slots");
         }
         _classroomId = classroomId;
         _sectionSlots = sectionSlots;

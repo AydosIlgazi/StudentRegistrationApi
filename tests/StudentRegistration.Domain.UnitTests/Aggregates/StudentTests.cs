@@ -128,7 +128,7 @@ public class StudentTests
         Schedule schedule = new Schedule(_term);
 
         //Act && Assert
-        Assert.Throws<Exception>(() => schedule.IsScheduleAvailable(slot, day));
+        Assert.Throws<StudentRegistrationDomainException>(() => schedule.IsScheduleAvailable(slot, day));
 
     }
 
@@ -154,7 +154,7 @@ public class StudentTests
         };
 
         //Act && Assert
-        Assert.Throws<Exception>(() => new Enrollment(_lecture, term, 10));
+        Assert.Throws<StudentRegistrationDomainException>(() => new Enrollment(_lecture, term, 10));
     }
 
     [Theory]
@@ -165,7 +165,7 @@ public class StudentTests
     {
 
         //Act && Assert
-        Assert.Throws<Exception>(() => new Enrollment(_lecture, _term, enrollmentCount));
+        Assert.Throws<StudentRegistrationDomainException>(() => new Enrollment(_lecture, _term, enrollmentCount));
     }
     [Fact]
     public void approve_enrollment_successfully()
@@ -201,7 +201,7 @@ public class StudentTests
         enrollment.ApproveEnrollment();
 
         //Act && Assert
-        Assert.Throws<Exception>(() => enrollment.ApproveEnrollment());
+        Assert.Throws<StudentRegistrationDomainException>(() => enrollment.ApproveEnrollment());
     }
 
     [Fact]
@@ -212,7 +212,7 @@ public class StudentTests
         enrollment.CancelEnrollment();
 
         //Act && Assert
-        Assert.Throws<Exception>(() => enrollment.ApproveEnrollment());
+        Assert.Throws<StudentRegistrationDomainException>(() => enrollment.ApproveEnrollment());
     }
 
     [Fact]
@@ -223,7 +223,7 @@ public class StudentTests
         enrollment.CancelEnrollment();
 
         //Act && Assert
-        Assert.Throws<Exception>(() => enrollment.CancelEnrollment());
+        Assert.Throws<StudentRegistrationDomainException>(() => enrollment.CancelEnrollment());
     }
 
     [Fact]
@@ -234,7 +234,7 @@ public class StudentTests
         enrollment.ApproveEnrollment();
 
         //Act && Assert
-        Assert.Throws<Exception>(() => enrollment.CancelEnrollment());
+        Assert.Throws<StudentRegistrationDomainException>(() => enrollment.CancelEnrollment());
     }
 
     [Fact]
@@ -297,7 +297,7 @@ public class StudentTests
 
 
         //Act && Assert
-        Assert.Throws<Exception>(()=>student.EnrollToLecture(_lecture,enrollment));
+        Assert.Throws<StudentRegistrationDomainException>(()=>student.EnrollToLecture(_lecture,enrollment));
     }
 
     [Fact]
@@ -310,7 +310,7 @@ public class StudentTests
         Enrollment enrollment = new Enrollment(_lecture, _term, 10);
 
         //Act && Assert
-        Assert.Throws<Exception>(()=> student.EnrollToLecture(_lecture, enrollment));
+        Assert.Throws<StudentRegistrationDomainException>(()=> student.EnrollToLecture(_lecture, enrollment));
     }
 
     [Fact]
@@ -333,7 +333,7 @@ public class StudentTests
 
         //Act && Assert
 
-        Assert.Throws<Exception>(()=> student.EnrollToLecture(lecture2, enrollment2));
+        Assert.Throws<StudentRegistrationDomainException>(()=> student.EnrollToLecture(lecture2, enrollment2));
     }
 
     [Fact]
@@ -370,7 +370,7 @@ public class StudentTests
 
         //Act && Assert
 
-        Assert.Throws<Exception>(() => student.RemoveEnrollment(1));
+        Assert.Throws<StudentRegistrationDomainException>(() => student.RemoveEnrollment(1));
     }
 
     [Fact]
@@ -384,7 +384,7 @@ public class StudentTests
 
         //Act && Assert
 
-        Assert.Throws<Exception>(() => student.RemoveEnrollment(_lecture.LectureId));
+        Assert.Throws<StudentRegistrationDomainException>(() => student.RemoveEnrollment(_lecture.LectureId));
     }
 
 }

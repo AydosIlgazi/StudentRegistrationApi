@@ -34,6 +34,6 @@ public class LecturerTests
         Lecturer lecturer = new Lecturer(lecturerId,lecturerSchedule);
 
         //Act && Assert
-        Assert.Throws<Exception>(()=>lecturer.AddNewScheduleToLecturer(lecturerSchedule));
+        Assert.Throws<StudentRegistrationDomainException>(()=>lecturer.AddNewScheduleToLecturer(lecturerSchedule));
     }
 }

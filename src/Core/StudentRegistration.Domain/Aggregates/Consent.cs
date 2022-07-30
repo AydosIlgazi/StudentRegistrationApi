@@ -18,7 +18,7 @@ public class Consent : AggregateRoot
 	public void AcceptConsent()
 	{
 		if(_consentStatus != ConsentStatus.Waiting){
-			throw new Exception ("Consent is already decided");
+			throw new StudentRegistrationDomainException ("Consent is already decided");
 		}
 		_consentStatus = ConsentStatus.Accepted;
 		AddDomainEvent(new ConsentAcceptedDomainEvent{
@@ -28,7 +28,7 @@ public class Consent : AggregateRoot
 	public void RejectConsent()
 	{
 		if(_consentStatus != ConsentStatus.Waiting){
-			throw new Exception ("Consent is already decided");
+			throw new StudentRegistrationDomainException("Consent is already decided");
 		}
 		_consentStatus = ConsentStatus.Rejected;
 	}

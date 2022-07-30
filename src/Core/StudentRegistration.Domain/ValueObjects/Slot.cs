@@ -14,11 +14,11 @@ public class Slot : ValueObject, IComparable<Slot>
 
         if(startTime.Hour>endTime.Hour)
         {
-            throw new Exception("Slot start time cannot be later than end time");
+            throw new StudentRegistrationDomainException("Slot start time cannot be later than end time");
         }
         if(startTime.Hour == endTime.Hour && startTime.Miniute >= endTime.Miniute)
         {
-            throw new Exception("Slot start time cannot be later than end time");
+            throw new StudentRegistrationDomainException("Slot start time cannot be later than end time");
         }
         _startTime = startTime;
         _endTime = endTime;

@@ -17,12 +17,12 @@ public class Lecturer :AggregateRoot
 		foreach(Schedule s in _schedules){
 			if(s.TermId == schedule.TermId)
 			{
-				throw new Exception("You cannot add multiple scheduled to the same term");
+				throw new StudentRegistrationDomainException("You cannot add multiple scheduled to the same term");
 			}
 		}
 		var sch=_schedules.FirstOrDefault(s=> s.IsActive == true);
 		if(sch != null){
-			throw new Exception("Lecturer has active schedule, close it before adding new one");
+			throw new StudentRegistrationDomainException("Lecturer has active schedule, close it before adding new one");
 		}
 	}
 

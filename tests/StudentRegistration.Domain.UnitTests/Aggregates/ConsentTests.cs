@@ -63,7 +63,7 @@ public class ConsentTests {
 
     
         // Assert
-        Assert.Throws<Exception>(()=>consent.RejectConsent());
+        Assert.Throws<StudentRegistrationDomainException>(()=>consent.RejectConsent());
     }
     [Fact]
     public void accepting_consent_is_invalid_when_consent_is_already_decided()
@@ -75,6 +75,6 @@ public class ConsentTests {
 
     
         // Assert
-        Assert.Throws<Exception>(()=>consent.AcceptConsent());
+        Assert.Throws<StudentRegistrationDomainException>(()=>consent.AcceptConsent());
     }
 }

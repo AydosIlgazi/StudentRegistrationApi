@@ -16,7 +16,7 @@ public class DailySlots : ValueObject
             }
             else{
                 if(prevSlot.EndTime.CompareTo(nextSlot.StartTime)==1){
-                    throw new Exception("Slots are intercepting");
+                    throw new StudentRegistrationDomainException("Slots are intercepting");
                 }
             }
             prevSlot= nextSlot;

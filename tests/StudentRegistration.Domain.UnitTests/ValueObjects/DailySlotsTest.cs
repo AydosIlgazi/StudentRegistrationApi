@@ -51,6 +51,6 @@ public class DailySlotsTests
     public void invalid_daily_slots_with_intercepting_slots(List<Slot> slots)
     {
         //act && assert
-        Assert.Throws<Exception>(() =>new DailySlots(slots));
+        Assert.Throws<StudentRegistrationDomainException>(() =>new DailySlots(slots));
     }
 }

@@ -99,7 +99,7 @@ public class LectureTests
     public void create_section_throws_exception_when_duplicate_slots(List<DaySlot> sectionDaySlots)
     {
         // Act && Assert
-        Assert.Throws<Exception>(() => new Section(classroomId,sectionDaySlots)) ;
+        Assert.Throws<StudentRegistrationDomainException>(() => new Section(classroomId,sectionDaySlots)) ;
     
     }
 
@@ -125,7 +125,7 @@ public class LectureTests
         };
     
         // Act && Assert
-        Assert.Throws<Exception>(()=> new Lecture(term,courseWithMaxWeeklyMins,lectureCapacity));
+        Assert.Throws<StudentRegistrationDomainException>(()=> new Lecture(term,courseWithMaxWeeklyMins,lectureCapacity));
     }
 
     [Fact]
@@ -157,7 +157,7 @@ public class LectureTests
         Lecture lecture = new Lecture(activeTerm,course,lectureCapacity);
 
         //Act && Assert
-        Assert.Throws<Exception>(()=>lecture.AddSectionToLecture(section,classroomWithMaxCapacity));
+        Assert.Throws<StudentRegistrationDomainException>(()=>lecture.AddSectionToLecture(section,classroomWithMaxCapacity));
     }
 
     [Theory]
@@ -174,7 +174,7 @@ public class LectureTests
         Lecture lecture = new Lecture(activeTerm,courseWithMaxWeeklyMins,lectureCapacity);
 
         //Act && Assert
-        Assert.Throws<Exception>(()=>lecture.AddSectionToLecture(section,classroom));
+        Assert.Throws<StudentRegistrationDomainException>(()=>lecture.AddSectionToLecture(section,classroom));
     }
 
     [Theory]
@@ -250,7 +250,7 @@ public class LectureTests
         lecture.AddSectionToLecture(section,classroomWithMaxCapacity);
 
         //Act && Assert
-        Assert.Throws<Exception>(()=>lecture.AssignLecturerToLecture(lecturer));
+        Assert.Throws<StudentRegistrationDomainException>(()=>lecture.AssignLecturerToLecture(lecturer));
 
     }
 

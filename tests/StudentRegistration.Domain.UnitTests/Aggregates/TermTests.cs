@@ -56,7 +56,7 @@ public class TermTest
     public void invalid_term_weekly_slots_creation_same_day_occurs_more_than_once(List<DailySlots> dailySlots)
     {
         //Act-Assert
-        Assert.Throws<Exception>(()=>new TermWeeklySlots(dailySlots));
+        Assert.Throws<StudentRegistrationDomainException>(()=>new TermWeeklySlots(dailySlots));
     }
 
     [Fact]
@@ -101,7 +101,7 @@ public class TermTest
         term.StartTerm();
     
         // Act && Assert
-        Assert.Throws<Exception>(()=>term.StartTerm());    
+        Assert.Throws<StudentRegistrationDomainException>(()=>term.StartTerm());    
     }
 
     [Fact]
@@ -137,7 +137,7 @@ public class TermTest
         term.EndTerm();
     
         // Act && Assert
-        Assert.Throws<Exception>(()=>term.EndTerm());    
+        Assert.Throws<StudentRegistrationDomainException>(()=>term.EndTerm());    
     }
 
     [Fact]
@@ -161,7 +161,7 @@ public class TermTest
         Term term = new TermBuilder().Build();
     
         // Act && Assert
-        Assert.Throws<Exception>(()=>term.OpenEnrollment());
+        Assert.Throws<StudentRegistrationDomainException>(()=>term.OpenEnrollment());
 
     }
     [Fact]
@@ -172,7 +172,7 @@ public class TermTest
         term.EndTerm();
     
         // Act && Assert
-        Assert.Throws<Exception>(()=>term.OpenEnrollment());
+        Assert.Throws<StudentRegistrationDomainException>(()=>term.OpenEnrollment());
 
     }
 
@@ -185,7 +185,7 @@ public class TermTest
         term.OpenEnrollment();
     
         // Act && Assert
-        Assert.Throws<Exception>(()=>term.OpenEnrollment());
+        Assert.Throws<StudentRegistrationDomainException>(()=>term.OpenEnrollment());
 
     }
 
@@ -212,7 +212,7 @@ public class TermTest
         Term term = new TermBuilder().Build();
     
         // Act && Assert
-        Assert.Throws<Exception>(()=>term.OpenEnrollment());
+        Assert.Throws<StudentRegistrationDomainException>(()=>term.OpenEnrollment());
 
     }
 
@@ -224,7 +224,7 @@ public class TermTest
         term.EndTerm();
     
         // Act && Assert
-        Assert.Throws<Exception>(()=>term.CloseEnrollment());
+        Assert.Throws<StudentRegistrationDomainException>(()=>term.CloseEnrollment());
 
     }
 
@@ -238,7 +238,7 @@ public class TermTest
         term.CloseEnrollment();
     
         // Act && Assert
-        Assert.Throws<Exception>(()=>term.CloseEnrollment());
+        Assert.Throws<StudentRegistrationDomainException>(()=>term.CloseEnrollment());
 
     }
 

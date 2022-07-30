@@ -54,7 +54,7 @@ public class ClassroomTests
         List<DaySlot> reservedSlots = new List<DaySlot> { reservedDaySlot };
 
         //Act && Assert
-        Assert.Throws<Exception>(() => classroom.ReserveSlotForLecture(reservedSlots)); 
+        Assert.Throws<StudentRegistrationDomainException>(() => classroom.ReserveSlotForLecture(reservedSlots)); 
 
     }
 
@@ -69,7 +69,7 @@ public class ClassroomTests
         classroom.ReserveSlotForLecture(reservedSlots);
 
         //Act && Assert
-        Assert.Throws<Exception>(() => classroom.ReserveSlotForLecture(reservedSlots));
+        Assert.Throws<StudentRegistrationDomainException>(() => classroom.ReserveSlotForLecture(reservedSlots));
 
     }
 

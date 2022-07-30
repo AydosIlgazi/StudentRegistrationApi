@@ -12,11 +12,11 @@ public class Enrollment : BaseEntity
     {
         if(term.IsEnrollmentActive==false)
         {
-            throw new Exception("Enrollment for this term is not available");
+            throw new StudentRegistrationDomainException("Enrollment for this term is not available");
         }
         if(currentEnrollmentCount >= lecture.Capacity)
         {
-            throw new Exception("Lecture is full");
+            throw new StudentRegistrationDomainException("Lecture is full");
         }
         _lectureId = lecture.LectureId;
         _enrollmentStatus = EnrollmentStatus.Active;
@@ -24,7 +24,7 @@ public class Enrollment : BaseEntity
     public void ApproveEnrollment()
     {
         if(_enrollmentStatus != EnrollmentStatus.Active){
-            throw new Exception("Only active enrollments can be completed");
+            throw new StudentRegistrationDomainException("Only active enrollments can be completed");
         }
         _enrollmentStatus = EnrollmentStatus.Completed;
     }
@@ -33,11 +33,11 @@ public class Enrollment : BaseEntity
         		
         if(_enrollmentStatus == EnrollmentStatus.Left)
 		{
-			throw new Exception("You are not enrolled this lecture");
+			throw new StudentRegistrationDomainException("You are not enrolled this lecture");
 		}
 		if(_enrollmentStatus ==EnrollmentStatus.Completed)
 		{
-			throw new Exception("This enrollment completed");
+			throw new StudentRegistrationDomainException("This enrollment completed");
 		}
         _enrollmentStatus = EnrollmentStatus.Left;
     }

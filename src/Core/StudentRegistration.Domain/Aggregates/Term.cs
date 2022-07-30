@@ -14,7 +14,7 @@ public class Term : AggregateRoot
 
 	public void StartTerm(){
 		if(_status == TermStatus.Active){
-			throw new Exception("This term is already started");
+			throw new StudentRegistrationDomainException("This term is already started");
 		}
 
 		_status = TermStatus.Active;
@@ -27,7 +27,7 @@ public class Term : AggregateRoot
 	public void EndTerm()
 	{
 		if(_status == TermStatus.Completed){
-			throw new Exception("This term is already ended");
+			throw new StudentRegistrationDomainException("This term is already ended");
 		}
 		_status = TermStatus.Completed;
 
@@ -39,11 +39,11 @@ public class Term : AggregateRoot
 	{
 		if(_status != TermStatus.Active)
 		{
-			throw new Exception("Only active terms can be opened to enrollment");
+			throw new StudentRegistrationDomainException("Only active terms can be opened to enrollment");
 		}
 		if(_isEnrollmentActive != false)
 		{
-			throw new Exception("This term is already open to enrollment");
+			throw new StudentRegistrationDomainException("This term is already open to enrollment");
 		}
 		_isEnrollmentActive = true;
 	}
@@ -51,11 +51,11 @@ public class Term : AggregateRoot
 	{
 		if(_status != TermStatus.Active)
 		{
-			throw new Exception("Only active terms can be closed to enrollment");
+			throw new StudentRegistrationDomainException("Only active terms can be closed to enrollment");
 		}
 		if(_isEnrollmentActive != true)
 		{
-			throw new Exception("This term is already close to enrollment");
+			throw new StudentRegistrationDomainException("This term is already close to enrollment");
 		}
 		_isEnrollmentActive = false;
 	}

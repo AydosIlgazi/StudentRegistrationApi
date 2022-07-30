@@ -60,7 +60,7 @@ public class SlotTest
     public void Invalid_Slot_Creation_With_EndDate_Is_Earlier_Than_StartDate(SlotTime start, SlotTime end)
     {
         //Act && Assert
-        Assert.Throws<Exception>(() => new Slot(start, end));
+        Assert.Throws<StudentRegistrationDomainException>(() => new Slot(start, end));
          
     }
 

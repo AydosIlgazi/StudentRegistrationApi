@@ -27,10 +27,10 @@ public class Classroom : AggregateRoot
         {
             var _daySlot =_classSlots.FirstOrDefault(cs=> cs.Day == ds.Day && cs.Slot == ds.Slot);
             if(_daySlot == null){
-                throw new Exception("This day and slot is not usable in this term");
+                throw new StudentRegistrationDomainException("This day and slot is not usable in this term");
             }
             if(_daySlot.IsAvailable==false){
-                throw new Exception("Slot in this classroom is already reserved");
+                throw new StudentRegistrationDomainException("Slot in this classroom is already reserved");
             }
             DaySlot reservedSlot = new DaySlot{
                 Day = ds.Day,

@@ -17,7 +17,7 @@ public class Lecture :AggregateRoot
 	{
 		if(term.TermStatus != TermStatus.Active)
 		{
-			throw new Exception("Lecture can be opened in only active terms");
+			throw new StudentRegistrationDomainException("Lecture can be opened in only active terms");
 		}
 
 		_termId = term.TermId;
@@ -48,11 +48,11 @@ public class Lecture :AggregateRoot
 			additionalDuration += ds.Slot.CalculateSlotDuration();
 		}
 		if(GetTotalLectureDuration()+ additionalDuration > _totalMinutesWeekly){
-			throw new Exception("Lecture duration cannot exceedde defined course duration");
+			throw new StudentRegistrationDomainException("Lecture duration cannot exceedde defined course duration");
 		}
 		if(classroom.Capacity<_capacity)
 		{
-			throw new Exception ("Lecture Capacity can not exceed the one of the classrooms capacity");
+			throw new StudentRegistrationDomainException("Lecture Capacity can not exceed the one of the classrooms capacity");
 		}
 		_lectureSections.Add(section);
 		AddDomainEvent(new SectionAddedToLectureDomainEvent{
@@ -63,7 +63,7 @@ public class Lecture :AggregateRoot
 	public void AssignLecturerToLecture(LecturerVO lecturer)
 	{
 		if(GetTotalLectureDuration() != _totalMinutesWeekly){
-			throw new Exception("Complete all slots before assigning the lecturer ");
+			throw new StudentRegistrationDomainException("Complete all slots before assigning the lecturer ");
 		}
 		List<DaySlot> daySlots = new List<DaySlot>();
 		foreach(Section s in _lectureSections){

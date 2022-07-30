@@ -25,7 +25,7 @@ public class Classroom : AggregateRoot
     {
         foreach(DaySlot ds in daySlots)
         {
-            var _daySlot =_classSlots.Where(cs=> cs.Day == ds.Day && cs.Slot == ds.Slot).FirstOrDefault();
+            var _daySlot =_classSlots.FirstOrDefault(cs=> cs.Day == ds.Day && cs.Slot == ds.Slot);
             if(_daySlot == null){
                 throw new Exception("This day and slot is not usable in this term");
             }

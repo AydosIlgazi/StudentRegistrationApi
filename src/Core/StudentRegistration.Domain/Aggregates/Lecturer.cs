@@ -20,7 +20,7 @@ public class Lecturer :AggregateRoot
 				throw new Exception("You cannot add multiple scheduled to the same term");
 			}
 		}
-		var sch=_schedules.Where(s=> s.IsActive == true).FirstOrDefault();
+		var sch=_schedules.FirstOrDefault(s=> s.IsActive == true);
 		if(sch != null){
 			throw new Exception("Lecturer has active schedule, close it before adding new one");
 		}

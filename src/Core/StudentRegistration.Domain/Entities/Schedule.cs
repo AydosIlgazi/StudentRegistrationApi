@@ -25,7 +25,7 @@ public class Schedule : BaseEntity
     }
     public bool IsScheduleAvailable(Slot slot, Day day)
     {
-        var _daySlot =_scheduleSlots.Where(ss=>ss.Day ==day && ss.Slot==slot).FirstOrDefault();
+        var _daySlot =_scheduleSlots.FirstOrDefault(ss => ss.Day == day && ss.Slot == slot);
         if(_daySlot == null){
             throw new Exception("This day and slot is not usable in this term");
         }
@@ -36,7 +36,7 @@ public class Schedule : BaseEntity
     {
         foreach(DaySlot ds in daySlots)
         {
-            var _daySlot =_scheduleSlots.Where(ss=>ss.Day ==ds.Day && ss.Slot==ds.Slot).FirstOrDefault();
+            var _daySlot =_scheduleSlots.FirstOrDefault(ss => ss.Day == ds.Day && ss.Slot == ds.Slot);
             DaySlot daySlot = new DaySlot{
                 Day=ds.Day,
                 Slot=ds.Slot,

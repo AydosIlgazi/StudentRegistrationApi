@@ -12,7 +12,7 @@ public class Student  : AggregateRoot
 
 	public void EnrollToLecture(LectureVO lecture, Enrollment enrollment)
 	{
-		var _enrollment = _enrollments.Where(e=> e.LectureId == lecture.LectureId && e.EnrollmentStatus != EnrollmentStatus.Left).FirstOrDefault();
+		var _enrollment = _enrollments.FirstOrDefault(e=> e.LectureId == lecture.LectureId && e.EnrollmentStatus != EnrollmentStatus.Left);
 		if(_enrollment != null)
 		{
 			throw new Exception ("You have active or completed enrollment to this lecture");
@@ -20,7 +20,7 @@ public class Student  : AggregateRoot
 		//check lecture is exist in course plan
 
 		//check student schedule available
-		var activeSchedule = _schedules.Where(s=> s.IsActive == true).FirstOrDefault();
+		var activeSchedule = _schedules.FirstOrDefault(s=> s.IsActive == true);
 		if(activeSchedule == null){
 			throw new Exception("You cannot enroll classes in this term");
 		}
@@ -48,7 +48,7 @@ public class Student  : AggregateRoot
 	}
 	public void RemoveEnrollment(int lectureId)
 	{
-		var enrollment = _enrollments.Where(e=>e.LectureId == lectureId).FirstOrDefault();
+		var enrollment = _enrollments.FirstOrDefault(e=>e.LectureId == lectureId);
 		if(enrollment == null)
 		{
 			throw new Exception("You are not enrolled this lecture");

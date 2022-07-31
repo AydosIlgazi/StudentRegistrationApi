@@ -11,7 +11,7 @@ public class Lecture :AggregateRoot
 
 	public List<Section> LectureSections => _lectureSections;
 
-	public string LecturerId => _lecturerId;
+	public string? LecturerId => _lecturerId;
 
 	public Lecture(TermVO term, CourseDTO course,int capacity)
 	{

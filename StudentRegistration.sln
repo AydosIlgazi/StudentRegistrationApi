@@ -1,35 +1,32 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30114.105
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32414.318
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{BAF795BE-E2E2-4609-9EAC-0DA6B27A28B5}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{74E7389C-BDA0-493C-884D-DA0670377761}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudentRegistration.Domain", "src\Core\StudentRegistration.Domain\StudentRegistration.Domain.csproj", "{E041E9CC-C295-44D5-84E3-28AB61E69E70}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StudentRegistration.Domain", "src\Core\StudentRegistration.Domain\StudentRegistration.Domain.csproj", "{E041E9CC-C295-44D5-84E3-28AB61E69E70}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudentRegistration.Application", "src\Core\StudentRegistration.Application\StudentRegistration.Application.csproj", "{87B73FA1-9A75-4A73-96F7-3D3A9D8AC110}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StudentRegistration.Application", "src\Core\StudentRegistration.Application\StudentRegistration.Application.csproj", "{87B73FA1-9A75-4A73-96F7-3D3A9D8AC110}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{0F68CD8F-A694-4C06-9846-010C21689B21}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudentRegistration.Infrastructure", "src\Infrastructure\StudentRegistration.Infrastructure\StudentRegistration.Infrastructure.csproj", "{A3093297-9534-49A6-86F9-FE715A287DDB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StudentRegistration.Infrastructure", "src\Infrastructure\StudentRegistration.Infrastructure\StudentRegistration.Infrastructure.csproj", "{A3093297-9534-49A6-86F9-FE715A287DDB}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WebApi", "WebApi", "{ED96C240-D050-48F7-96B0-06739BEE742C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudentRegistration.WebApi", "src\WebApi\StudentRegistration.WebApi\StudentRegistration.WebApi.csproj", "{882D7D71-A165-4629-9D19-51CE56F7615B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StudentRegistration.WebApi", "src\WebApi\StudentRegistration.WebApi\StudentRegistration.WebApi.csproj", "{882D7D71-A165-4629-9D19-51CE56F7615B}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{C375A206-3D5C-4B24-A070-75B282E7E49C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudentRegistration.Domain.UnitTests", "tests\StudentRegistration.Domain.UnitTests\StudentRegistration.Domain.UnitTests.csproj", "{A2034748-33AC-4004-A726-EC1FA4794149}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StudentRegistration.UnitTests", "tests\StudentRegistration.UnitTests\StudentRegistration.UnitTests.csproj", "{C77287A2-5888-4B5F-A25D-E7ADD9AC54DA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{E041E9CC-C295-44D5-84E3-28AB61E69E70}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -48,10 +45,13 @@ Global
 		{882D7D71-A165-4629-9D19-51CE56F7615B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{882D7D71-A165-4629-9D19-51CE56F7615B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{882D7D71-A165-4629-9D19-51CE56F7615B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A2034748-33AC-4004-A726-EC1FA4794149}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A2034748-33AC-4004-A726-EC1FA4794149}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A2034748-33AC-4004-A726-EC1FA4794149}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A2034748-33AC-4004-A726-EC1FA4794149}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C77287A2-5888-4B5F-A25D-E7ADD9AC54DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C77287A2-5888-4B5F-A25D-E7ADD9AC54DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C77287A2-5888-4B5F-A25D-E7ADD9AC54DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C77287A2-5888-4B5F-A25D-E7ADD9AC54DA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{74E7389C-BDA0-493C-884D-DA0670377761} = {BAF795BE-E2E2-4609-9EAC-0DA6B27A28B5}
@@ -61,6 +61,9 @@ Global
 		{A3093297-9534-49A6-86F9-FE715A287DDB} = {0F68CD8F-A694-4C06-9846-010C21689B21}
 		{ED96C240-D050-48F7-96B0-06739BEE742C} = {BAF795BE-E2E2-4609-9EAC-0DA6B27A28B5}
 		{882D7D71-A165-4629-9D19-51CE56F7615B} = {ED96C240-D050-48F7-96B0-06739BEE742C}
-		{A2034748-33AC-4004-A726-EC1FA4794149} = {C375A206-3D5C-4B24-A070-75B282E7E49C}
+		{C77287A2-5888-4B5F-A25D-E7ADD9AC54DA} = {C375A206-3D5C-4B24-A070-75B282E7E49C}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4F30C5CF-9585-42FF-AAAD-F91B60FE6A09}
 	EndGlobalSection
 EndGlobal

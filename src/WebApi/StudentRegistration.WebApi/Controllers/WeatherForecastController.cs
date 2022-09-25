@@ -29,4 +29,11 @@ public class WeatherForecastController : ControllerBase
         })
         .ToArray();
     }
+
+    [HttpPost]
+    public WeatherForecastXs Add(WeatherForecastXs weatherForecast)
+    {
+        WeatherForecastXs weather = weatherForecast;
+        return weather;
+    }
 }

@@ -9,6 +9,7 @@ public class Slot : ValueObject, IComparable<Slot>
     public SlotTime StartTime=>_startTime; 
     public SlotTime EndTime =>_endTime;
 
+    private Slot() { }
     public Slot(SlotTime startTime, SlotTime endTime, int slotDuration=1)
     {
 

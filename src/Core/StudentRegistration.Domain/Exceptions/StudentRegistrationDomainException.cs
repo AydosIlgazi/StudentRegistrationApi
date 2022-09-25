@@ -5,4 +5,8 @@ public class StudentRegistrationDomainException : Exception{
     {
         
     }
+
+    public StudentRegistrationDomainException(string message, Exception innerException)
+    : base(message, innerException)
+    { }
 }

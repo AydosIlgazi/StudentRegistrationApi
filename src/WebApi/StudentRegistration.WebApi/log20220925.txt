@@ -1,0 +1,966 @@
+[17:07:55 INF]  Request: {"SemesterType":"Fall","Year":2022,"TermWeeklySlots":{"DailySlots":[{"Day":"Monday","Slots":[{"SlotName":"string","StartTime":{"Hour":8,"Miniute":30,"$type":"SlotTimeDTO"},"EndTime":{"Hour":5,"Miniute":30,"$type":"SlotTimeDTO"},"$type":"SlotDTO"},{"SlotName":"string","StartTime":{"Hour":9,"Miniute":30,"$type":"SlotTimeDTO"},"EndTime":{"Hour":10,"Miniute":30,"$type":"SlotTimeDTO"},"$type":"SlotDTO"}],"$type":"DailySlotsDTO"},{"Day":"Tuesday","Slots":[{"SlotName":"string","StartTime":{"Hour":14,"Miniute":0,"$type":"SlotTimeDTO"},"EndTime":{"Hour":15,"Miniute":0,"$type":"SlotTimeDTO"},"$type":"SlotDTO"},{"SlotName":"string","StartTime":{"Hour":15,"Miniute":15,"$type":"SlotTimeDTO"},"EndTime":{"Hour":16,"Miniute":15,"$type":"SlotTimeDTO"},"$type":"SlotDTO"}],"$type":"DailySlotsDTO"}],"$type":"TermWeeklySlotsDTO"},"$type":"CreateTermCommand"}
+[17:07:56 ERR]  Exception
+AutoMapper.AutoMapperMappingException: Error mapping types.
+
+Mapping types:
+TermWeeklySlotsDTO -> TermWeeklySlots
+StudentRegistration.Application.DTOs.TermWeeklySlotsDTO -> StudentRegistration.Domain.ValueObjects.TermWeeklySlots
+
+Type Map configuration:
+TermWeeklySlotsDTO -> TermWeeklySlots
+StudentRegistration.Application.DTOs.TermWeeklySlotsDTO -> StudentRegistration.Domain.ValueObjects.TermWeeklySlots
+
+Destination Member:
+StudentRegistration.Domain.ValueObjects.TermWeeklySlots.Void .ctor(System.Collections.Generic.List`1[StudentRegistration.Domain.ValueObjects.DailySlots]).parameter dailySlots
+
+ ---> AutoMapper.AutoMapperMappingException: Error mapping types.
+
+Mapping types:
+DailySlotsDTO -> DailySlots
+StudentRegistration.Application.DTOs.DailySlotsDTO -> StudentRegistration.Domain.ValueObjects.DailySlots
+
+Type Map configuration:
+DailySlotsDTO -> DailySlots
+StudentRegistration.Application.DTOs.DailySlotsDTO -> StudentRegistration.Domain.ValueObjects.DailySlots
+
+Destination Member:
+StudentRegistration.Domain.ValueObjects.DailySlots.Void .ctor(System.Collections.Generic.List`1[StudentRegistration.Domain.ValueObjects.Slot]).parameter slots
+
+ ---> AutoMapper.AutoMapperMappingException: Error mapping types.
+
+Mapping types:
+List`1 -> List`1
+System.Collections.Generic.List`1[[StudentRegistration.Application.DTOs.SlotDTO, StudentRegistration.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> System.Collections.Generic.List`1[[StudentRegistration.Domain.ValueObjects.Slot, StudentRegistration.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+
+Destination Member:
+StudentRegistration.Domain.ValueObjects.DailySlots.Void .ctor(System.Collections.Generic.List`1[StudentRegistration.Domain.ValueObjects.Slot]).parameter slots
+
+ ---> StudentRegistration.Domain.Exceptions.StudentRegistrationDomainException: Slot start time cannot be later than end time
+   at StudentRegistration.Domain.ValueObjects.Slot..ctor(SlotTime startTime, SlotTime endTime, Int32 slotDuration) in C:\Users\aydos\OneDrive\Masaüstü\Projects\StudentRegistration\src\Core\StudentRegistration.Domain\ValueObjects\Slot.cs:line 18
+   at lambda_method14(Closure , List`1 , List`1 , ResolutionContext )
+   --- End of inner exception stack trace ---
+   at lambda_method14(Closure , List`1 , List`1 , ResolutionContext )
+   at lambda_method13(Closure , Object , TermWeeklySlots , ResolutionContext )
+   --- End of inner exception stack trace ---
+   at lambda_method13(Closure , Object , TermWeeklySlots , ResolutionContext )
+   --- End of inner exception stack trace ---
+   at lambda_method13(Closure , Object , TermWeeklySlots , ResolutionContext )
+   at StudentRegistration.Application.Commands.CreateTermCommandHandler.Handle(CreateTermCommand request, CancellationToken cancellationToken) in C:\Users\aydos\OneDrive\Masaüstü\Projects\StudentRegistration\src\Core\StudentRegistration.Application\Commands\Term\CreateTerm\CreateTermCommandHandler.cs:line 20
+   at StudentRegistration.Application.Behaviors.LoggingBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next) in C:\Users\aydos\OneDrive\Masaüstü\Projects\StudentRegistration\src\Core\StudentRegistration.Application\Behaviors\LoggingBehavior.cs:line 18
+   at StudentRegistration.Application.Behaviors.ValidatonBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next) in C:\Users\aydos\OneDrive\Masaüstü\Projects\StudentRegistration\src\Core\StudentRegistration.Application\Behaviors\ValidationBehavior.cs:line 34
+   at MediatR.Pipeline.RequestExceptionProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at MediatR.Pipeline.RequestExceptionProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at MediatR.Pipeline.RequestExceptionActionProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at MediatR.Pipeline.RequestExceptionActionProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at MediatR.Pipeline.RequestPostProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at MediatR.Pipeline.RequestPreProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at StudentRegistration.WebApi.Controllers.TermController.CreateTerm(CreateTermCommand command) in C:\Users\aydos\OneDrive\Masaüstü\Projects\StudentRegistration\src\WebApi\StudentRegistration.WebApi\Controllers\TermController.cs:line 21
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at StudentRegistration.WebApi.Middlewares.ExceptionHandlerMiddleware.Invoke(HttpContext context) in C:\Users\aydos\OneDrive\Masaüstü\Projects\StudentRegistration\src\WebApi\StudentRegistration.WebApi\Middlewares\ExceptionHandlerMiddleware.cs:line 24
+[17:08:17 INF]  Request: {"SemesterType":"Fall","Year":2022,"TermWeeklySlots":{"DailySlots":[{"Day":"Monday","Slots":[{"SlotName":"string","StartTime":{"Hour":8,"Miniute":30,"$type":"SlotTimeDTO"},"EndTime":{"Hour":5,"Miniute":30,"$type":"SlotTimeDTO"},"$type":"SlotDTO"},{"SlotName":"string","StartTime":{"Hour":9,"Miniute":30,"$type":"SlotTimeDTO"},"EndTime":{"Hour":10,"Miniute":30,"$type":"SlotTimeDTO"},"$type":"SlotDTO"}],"$type":"DailySlotsDTO"},{"Day":"Tuesday","Slots":[{"SlotName":"string","StartTime":{"Hour":14,"Miniute":0,"$type":"SlotTimeDTO"},"EndTime":{"Hour":15,"Miniute":0,"$type":"SlotTimeDTO"},"$type":"SlotDTO"},{"SlotName":"string","StartTime":{"Hour":15,"Miniute":15,"$type":"SlotTimeDTO"},"EndTime":{"Hour":16,"Miniute":15,"$type":"SlotTimeDTO"},"$type":"SlotDTO"}],"$type":"DailySlotsDTO"}],"$type":"TermWeeklySlotsDTO"},"$type":"CreateTermCommand"}
+[17:08:26 ERR]  Exception
+AutoMapper.AutoMapperMappingException: Error mapping types.
+
+Mapping types:
+TermWeeklySlotsDTO -> TermWeeklySlots
+StudentRegistration.Application.DTOs.TermWeeklySlotsDTO -> StudentRegistration.Domain.ValueObjects.TermWeeklySlots
+
+Type Map configuration:
+TermWeeklySlotsDTO -> TermWeeklySlots
+StudentRegistration.Application.DTOs.TermWeeklySlotsDTO -> StudentRegistration.Domain.ValueObjects.TermWeeklySlots
+
+Destination Member:
+StudentRegistration.Domain.ValueObjects.TermWeeklySlots.Void .ctor(System.Collections.Generic.List`1[StudentRegistration.Domain.ValueObjects.DailySlots]).parameter dailySlots
+
+ ---> AutoMapper.AutoMapperMappingException: Error mapping types.
+
+Mapping types:
+DailySlotsDTO -> DailySlots
+StudentRegistration.Application.DTOs.DailySlotsDTO -> StudentRegistration.Domain.ValueObjects.DailySlots
+
+Type Map configuration:
+DailySlotsDTO -> DailySlots
+StudentRegistration.Application.DTOs.DailySlotsDTO -> StudentRegistration.Domain.ValueObjects.DailySlots
+
+Destination Member:
+StudentRegistration.Domain.ValueObjects.DailySlots.Void .ctor(System.Collections.Generic.List`1[StudentRegistration.Domain.ValueObjects.Slot]).parameter slots
+
+ ---> AutoMapper.AutoMapperMappingException: Error mapping types.
+
+Mapping types:
+List`1 -> List`1
+System.Collections.Generic.List`1[[StudentRegistration.Application.DTOs.SlotDTO, StudentRegistration.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> System.Collections.Generic.List`1[[StudentRegistration.Domain.ValueObjects.Slot, StudentRegistration.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+
+Destination Member:
+StudentRegistration.Domain.ValueObjects.DailySlots.Void .ctor(System.Collections.Generic.List`1[StudentRegistration.Domain.ValueObjects.Slot]).parameter slots
+
+ ---> StudentRegistration.Domain.Exceptions.StudentRegistrationDomainException: Slot start time cannot be later than end time
+   at StudentRegistration.Domain.ValueObjects.Slot..ctor(SlotTime startTime, SlotTime endTime, Int32 slotDuration) in C:\Users\aydos\OneDrive\Masaüstü\Projects\StudentRegistration\src\Core\StudentRegistration.Domain\ValueObjects\Slot.cs:line 18
+   at lambda_method14(Closure , List`1 , List`1 , ResolutionContext )
+   --- End of inner exception stack trace ---
+   at lambda_method14(Closure , List`1 , List`1 , ResolutionContext )
+   at lambda_method13(Closure , Object , TermWeeklySlots , ResolutionContext )
+   --- End of inner exception stack trace ---
+   at lambda_method13(Closure , Object , TermWeeklySlots , ResolutionContext )
+   --- End of inner exception stack trace ---
+   at lambda_method13(Closure , Object , TermWeeklySlots , ResolutionContext )
+   at StudentRegistration.Application.Commands.CreateTermCommandHandler.Handle(CreateTermCommand request, CancellationToken cancellationToken) in C:\Users\aydos\OneDrive\Masaüstü\Projects\StudentRegistration\src\Core\StudentRegistration.Application\Commands\Term\CreateTerm\CreateTermCommandHandler.cs:line 20
+   at StudentRegistration.Application.Behaviors.LoggingBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next) in C:\Users\aydos\OneDrive\Masaüstü\Projects\StudentRegistration\src\Core\StudentRegistration.Application\Behaviors\LoggingBehavior.cs:line 18
+   at StudentRegistration.Application.Behaviors.ValidatonBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next) in C:\Users\aydos\OneDrive\Masaüstü\Projects\StudentRegistration\src\Core\StudentRegistration.Application\Behaviors\ValidationBehavior.cs:line 34
+   at MediatR.Pipeline.RequestExceptionProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at MediatR.Pipeline.RequestExceptionProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at MediatR.Pipeline.RequestExceptionActionProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at MediatR.Pipeline.RequestExceptionActionProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at MediatR.Pipeline.RequestPostProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at MediatR.Pipeline.RequestPreProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at StudentRegistration.WebApi.Controllers.TermController.CreateTerm(CreateTermCommand command) in C:\Users\aydos\OneDrive\Masaüstü\Projects\StudentRegistration\src\WebApi\StudentRegistration.WebApi\Controllers\TermController.cs:line 21
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at StudentRegistration.WebApi.Middlewares.ExceptionHandlerMiddleware.Invoke(HttpContext context) in C:\Users\aydos\OneDrive\Masaüstü\Projects\StudentRegistration\src\WebApi\StudentRegistration.WebApi\Middlewares\ExceptionHandlerMiddleware.cs:line 24
+[17:09:12 INF]  Request: {"SemesterType":"Fall","Year":2022,"TermWeeklySlots":{"DailySlots":[{"Day":"Monday","Slots":[{"SlotName":"string","StartTime":{"Hour":8,"Miniute":30,"$type":"SlotTimeDTO"},"EndTime":{"Hour":9,"Miniute":30,"$type":"SlotTimeDTO"},"$type":"SlotDTO"},{"SlotName":"string","StartTime":{"Hour":9,"Miniute":30,"$type":"SlotTimeDTO"},"EndTime":{"Hour":10,"Miniute":30,"$type":"SlotTimeDTO"},"$type":"SlotDTO"}],"$type":"DailySlotsDTO"},{"Day":"Tuesday","Slots":[{"SlotName":"string","StartTime":{"Hour":14,"Miniute":0,"$type":"SlotTimeDTO"},"EndTime":{"Hour":15,"Miniute":0,"$type":"SlotTimeDTO"},"$type":"SlotDTO"},{"SlotName":"string","StartTime":{"Hour":15,"Miniute":15,"$type":"SlotTimeDTO"},"EndTime":{"Hour":16,"Miniute":15,"$type":"SlotTimeDTO"},"$type":"SlotDTO"}],"$type":"DailySlotsDTO"}],"$type":"TermWeeklySlotsDTO"},"$type":"CreateTermCommand"}
+[17:09:13 INF] StudentRegistration.Application.Commands.CreateTermCommandHandler Creating term {"Status":"Waiting","IsEnrollmentActive":false,"LectureDaysAndSlots":{"DailySlots":[{"Day":"Monday","Slots":[{"SlotName":"string","StartTime":{"Hour":8,"Miniute":30,"$type":"SlotTime"},"EndTime":{"Hour":9,"Miniute":30,"$type":"SlotTime"},"$type":"Slot"},{"SlotName":"string","StartTime":{"Hour":9,"Miniute":30,"$type":"SlotTime"},"EndTime":{"Hour":10,"Miniute":30,"$type":"SlotTime"},"$type":"Slot"}],"$type":"DailySlots"},{"Day":"Tuesday","Slots":[{"SlotName":"string","StartTime":{"Hour":14,"Miniute":0,"$type":"SlotTime"},"EndTime":{"Hour":15,"Miniute":0,"$type":"SlotTime"},"$type":"Slot"},{"SlotName":"string","StartTime":{"Hour":15,"Miniute":15,"$type":"SlotTime"},"EndTime":{"Hour":16,"Miniute":15,"$type":"SlotTime"},"$type":"Slot"}],"$type":"DailySlots"}],"$type":"TermWeeklySlots"},"Semester":{"SemesterType":"Fall","Year":2022,"$type":"Semester"},"DomainEvents":null,"Id":0,"$type":"Term"}
+[17:09:14 INF]  Response: 20
+[17:09:49 INF]  Request: {"SemesterType":"Fall","Year":2022,"TermWeeklySlots":{"DailySlots":[{"Day":"Monday","Slots":[{"SlotName":"string","StartTime":{"Hour":8,"Miniute":30,"$type":"SlotTimeDTO"},"EndTime":{"Hour":5,"Miniute":30,"$type":"SlotTimeDTO"},"$type":"SlotDTO"},{"SlotName":"string","StartTime":{"Hour":9,"Miniute":30,"$type":"SlotTimeDTO"},"EndTime":{"Hour":10,"Miniute":30,"$type":"SlotTimeDTO"},"$type":"SlotDTO"}],"$type":"DailySlotsDTO"},{"Day":"Tuesday","Slots":[{"SlotName":"string","StartTime":{"Hour":14,"Miniute":0,"$type":"SlotTimeDTO"},"EndTime":{"Hour":15,"Miniute":0,"$type":"SlotTimeDTO"},"$type":"SlotDTO"},{"SlotName":"string","StartTime":{"Hour":15,"Miniute":15,"$type":"SlotTimeDTO"},"EndTime":{"Hour":16,"Miniute":15,"$type":"SlotTimeDTO"},"$type":"SlotDTO"}],"$type":"DailySlotsDTO"}],"$type":"TermWeeklySlotsDTO"},"$type":"CreateTermCommand"}
+[17:13:48 INF]  Request: {"SemesterType":"Fall","Year":2022,"TermWeeklySlots":{"DailySlots":[{"Day":"Monday","Slots":[{"SlotName":"string","StartTime":{"Hour":8,"Miniute":30,"$type":"SlotTimeDTO"},"EndTime":{"Hour":5,"Miniute":30,"$type":"SlotTimeDTO"},"$type":"SlotDTO"},{"SlotName":"string","StartTime":{"Hour":9,"Miniute":30,"$type":"SlotTimeDTO"},"EndTime":{"Hour":10,"Miniute":30,"$type":"SlotTimeDTO"},"$type":"SlotDTO"}],"$type":"DailySlotsDTO"},{"Day":"Tuesday","Slots":[{"SlotName":"string","StartTime":{"Hour":14,"Miniute":0,"$type":"SlotTimeDTO"},"EndTime":{"Hour":15,"Miniute":0,"$type":"SlotTimeDTO"},"$type":"SlotDTO"},{"SlotName":"string","StartTime":{"Hour":15,"Miniute":15,"$type":"SlotTimeDTO"},"EndTime":{"Hour":16,"Miniute":15,"$type":"SlotTimeDTO"},"$type":"SlotDTO"}],"$type":"DailySlotsDTO"}],"$type":"TermWeeklySlotsDTO"},"$type":"CreateTermCommand"}
+[17:13:56 ERR]  Exception
+AutoMapper.AutoMapperMappingException: Error mapping types.
+
+Mapping types:
+TermWeeklySlotsDTO -> TermWeeklySlots
+StudentRegistration.Application.DTOs.TermWeeklySlotsDTO -> StudentRegistration.Domain.ValueObjects.TermWeeklySlots
+
+Type Map configuration:
+TermWeeklySlotsDTO -> TermWeeklySlots
+StudentRegistration.Application.DTOs.TermWeeklySlotsDTO -> StudentRegistration.Domain.ValueObjects.TermWeeklySlots
+
+Destination Member:
+StudentRegistration.Domain.ValueObjects.TermWeeklySlots.Void .ctor(System.Collections.Generic.List`1[StudentRegistration.Domain.ValueObjects.DailySlots]).parameter dailySlots
+
+ ---> AutoMapper.AutoMapperMappingException: Error mapping types.
+
+Mapping types:
+DailySlotsDTO -> DailySlots
+StudentRegistration.Application.DTOs.DailySlotsDTO -> StudentRegistration.Domain.ValueObjects.DailySlots
+
+Type Map configuration:
+DailySlotsDTO -> DailySlots
+StudentRegistration.Application.DTOs.DailySlotsDTO -> StudentRegistration.Domain.ValueObjects.DailySlots
+
+Destination Member:
+StudentRegistration.Domain.ValueObjects.DailySlots.Void .ctor(System.Collections.Generic.List`1[StudentRegistration.Domain.ValueObjects.Slot]).parameter slots
+
+ ---> AutoMapper.AutoMapperMappingException: Error mapping types.
+
+Mapping types:
+List`1 -> List`1
+System.Collections.Generic.List`1[[StudentRegistration.Application.DTOs.SlotDTO, StudentRegistration.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> System.Collections.Generic.List`1[[StudentRegistration.Domain.ValueObjects.Slot, StudentRegistration.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+
+Destination Member:
+StudentRegistration.Domain.ValueObjects.DailySlots.Void .ctor(System.Collections.Generic.List`1[StudentRegistration.Domain.ValueObjects.Slot]).parameter slots
+
+ ---> StudentRegistration.Domain.Exceptions.StudentRegistrationDomainException: Slot start time cannot be later than end time
+   at StudentRegistration.Domain.ValueObjects.Slot..ctor(SlotTime startTime, SlotTime endTime, Int32 slotDuration) in C:\Users\aydos\OneDrive\Masaüstü\Projects\StudentRegistration\src\Core\StudentRegistration.Domain\ValueObjects\Slot.cs:line 18
+   at lambda_method14(Closure , List`1 , List`1 , ResolutionContext )
+   --- End of inner exception stack trace ---
+   at lambda_method14(Closure , List`1 , List`1 , ResolutionContext )
+   at lambda_method13(Closure , Object , TermWeeklySlots , ResolutionContext )
+   --- End of inner exception stack trace ---
+   at lambda_method13(Closure , Object , TermWeeklySlots , ResolutionContext )
+   --- End of inner exception stack trace ---
+   at lambda_method13(Closure , Object , TermWeeklySlots , ResolutionContext )
+   at StudentRegistration.Application.Commands.CreateTermCommandHandler.Handle(CreateTermCommand request, CancellationToken cancellationToken) in C:\Users\aydos\OneDrive\Masaüstü\Projects\StudentRegistration\src\Core\StudentRegistration.Application\Commands\Term\CreateTerm\CreateTermCommandHandler.cs:line 20
+   at StudentRegistration.Application.Behaviors.LoggingBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next) in C:\Users\aydos\OneDrive\Masaüstü\Projects\StudentRegistration\src\Core\StudentRegistration.Application\Behaviors\LoggingBehavior.cs:line 18
+   at StudentRegistration.Application.Behaviors.ValidatonBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next) in C:\Users\aydos\OneDrive\Masaüstü\Projects\StudentRegistration\src\Core\StudentRegistration.Application\Behaviors\ValidationBehavior.cs:line 34
+   at MediatR.Pipeline.RequestExceptionProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at MediatR.Pipeline.RequestExceptionProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at MediatR.Pipeline.RequestExceptionActionProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at MediatR.Pipeline.RequestExceptionActionProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at MediatR.Pipeline.RequestPostProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at MediatR.Pipeline.RequestPreProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at StudentRegistration.WebApi.Controllers.TermController.CreateTerm(CreateTermCommand command) in C:\Users\aydos\OneDrive\Masaüstü\Projects\StudentRegistration\src\WebApi\StudentRegistration.WebApi\Controllers\TermController.cs:line 21
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at StudentRegistration.WebApi.Middlewares.ExceptionHandlerMiddleware.Invoke(HttpContext context) in C:\Users\aydos\OneDrive\Masaüstü\Projects\StudentRegistration\src\WebApi\StudentRegistration.WebApi\Middlewares\ExceptionHandlerMiddleware.cs:line 24
+[17:28:52 INF]  Request: {"SemesterType":"Fall","Year":2022,"TermWeeklySlots":{"DailySlots":[{"Day":"Monday","Slots":[{"SlotName":"string","StartTime":{"Hour":8,"Miniute":30,"$type":"SlotTimeDTO"},"EndTime":{"Hour":5,"Miniute":30,"$type":"SlotTimeDTO"},"$type":"SlotDTO"},{"SlotName":"string","StartTime":{"Hour":9,"Miniute":30,"$type":"SlotTimeDTO"},"EndTime":{"Hour":10,"Miniute":30,"$type":"SlotTimeDTO"},"$type":"SlotDTO"}],"$type":"DailySlotsDTO"},{"Day":"Tuesday","Slots":[{"SlotName":"string","StartTime":{"Hour":14,"Miniute":0,"$type":"SlotTimeDTO"},"EndTime":{"Hour":15,"Miniute":0,"$type":"SlotTimeDTO"},"$type":"SlotDTO"},{"SlotName":"string","StartTime":{"Hour":15,"Miniute":15,"$type":"SlotTimeDTO"},"EndTime":{"Hour":16,"Miniute":15,"$type":"SlotTimeDTO"},"$type":"SlotDTO"}],"$type":"DailySlotsDTO"}],"$type":"TermWeeklySlotsDTO"},"$type":"CreateTermCommand"}
+[17:28:58 ERR]  Exception
+StudentRegistration.Domain.Exceptions.StudentRegistrationDomainException: Slot start time cannot be later than end time
+   at StudentRegistration.Domain.ValueObjects.Slot..ctor(SlotTime startTime, SlotTime endTime, Int32 slotDuration) in C:\Users\aydos\OneDrive\Masaüstü\Projects\StudentRegistration\src\Core\StudentRegistration.Domain\ValueObjects\Slot.cs:line 18
+   at lambda_method14(Closure , List`1 , List`1 , ResolutionContext )
+[17:32:28 INF]  Request: {"SemesterType":"Fall","Year":2022,"TermWeeklySlots":{"DailySlots":[{"Day":"Monday","Slots":[{"SlotName":"string","StartTime":{"Hour":8,"Miniute":30,"$type":"SlotTimeDTO"},"EndTime":{"Hour":5,"Miniute":0,"$type":"SlotTimeDTO"},"$type":"SlotDTO"},{"SlotName":"string","StartTime":{"Hour":9,"Miniute":30,"$type":"SlotTimeDTO"},"EndTime":{"Hour":10,"Miniute":30,"$type":"SlotTimeDTO"},"$type":"SlotDTO"}],"$type":"DailySlotsDTO"},{"Day":"Tuesday","Slots":[{"SlotName":"string","StartTime":{"Hour":14,"Miniute":0,"$type":"SlotTimeDTO"},"EndTime":{"Hour":15,"Miniute":0,"$type":"SlotTimeDTO"},"$type":"SlotDTO"},{"SlotName":"string","StartTime":{"Hour":15,"Miniute":15,"$type":"SlotTimeDTO"},"EndTime":{"Hour":16,"Miniute":15,"$type":"SlotTimeDTO"},"$type":"SlotDTO"}],"$type":"DailySlotsDTO"}],"$type":"TermWeeklySlotsDTO"},"$type":"CreateTermCommand"}
+[17:32:53 ERR]  Exception
+StudentRegistration.Domain.Exceptions.StudentRegistrationDomainException: Slot start time cannot be later than end time
+   at StudentRegistration.Domain.ValueObjects.Slot..ctor(SlotTime startTime, SlotTime endTime, Int32 slotDuration) in C:\Users\aydos\OneDrive\Masaüstü\Projects\StudentRegistration\src\Core\StudentRegistration.Domain\ValueObjects\Slot.cs:line 18
+   at lambda_method14(Closure , List`1 , List`1 , ResolutionContext )
+[17:33:03 INF]  Request: {"SemesterType":"Fall","Year":2022,"TermWeeklySlots":{"DailySlots":[{"Day":"Monday","Slots":[{"SlotName":"string","StartTime":{"Hour":8,"Miniute":30,"$type":"SlotTimeDTO"},"EndTime":{"Hour":0,"Miniute":0,"$type":"SlotTimeDTO"},"$type":"SlotDTO"},{"SlotName":"string","StartTime":{"Hour":9,"Miniute":30,"$type":"SlotTimeDTO"},"EndTime":{"Hour":10,"Miniute":30,"$type":"SlotTimeDTO"},"$type":"SlotDTO"}],"$type":"DailySlotsDTO"},{"Day":"Tuesday","Slots":[{"SlotName":"string","StartTime":{"Hour":14,"Miniute":0,"$type":"SlotTimeDTO"},"EndTime":{"Hour":15,"Miniute":0,"$type":"SlotTimeDTO"},"$type":"SlotDTO"},{"SlotName":"string","StartTime":{"Hour":15,"Miniute":15,"$type":"SlotTimeDTO"},"EndTime":{"Hour":16,"Miniute":15,"$type":"SlotTimeDTO"},"$type":"SlotDTO"}],"$type":"DailySlotsDTO"}],"$type":"TermWeeklySlotsDTO"},"$type":"CreateTermCommand"}
+[17:33:13 ERR]  Exception
+StudentRegistration.Domain.Exceptions.StudentRegistrationDomainException: Slot start time cannot be later than end time
+   at StudentRegistration.Domain.ValueObjects.Slot..ctor(SlotTime startTime, SlotTime endTime, Int32 slotDuration) in C:\Users\aydos\OneDrive\Masaüstü\Projects\StudentRegistration\src\Core\StudentRegistration.Domain\ValueObjects\Slot.cs:line 18
+   at lambda_method14(Closure , List`1 , List`1 , ResolutionContext )
+[17:34:49 INF]  Request: {"SemesterType":"Fall","Year":2022,"TermWeeklySlots":{"DailySlots":[{"Day":"Monday","Slots":[],"$type":"DailySlotsDTO"},{"Day":"Tuesday","Slots":[{"SlotName":"string","StartTime":{"Hour":14,"Miniute":0,"$type":"SlotTimeDTO"},"EndTime":{"Hour":15,"Miniute":0,"$type":"SlotTimeDTO"},"$type":"SlotDTO"},{"SlotName":"string","StartTime":{"Hour":15,"Miniute":15,"$type":"SlotTimeDTO"},"EndTime":{"Hour":16,"Miniute":15,"$type":"SlotTimeDTO"},"$type":"SlotDTO"}],"$type":"DailySlotsDTO"}],"$type":"TermWeeklySlotsDTO"},"$type":"CreateTermCommand"}
+[17:34:50 INF] StudentRegistration.Application.Commands.CreateTermCommandHandler Creating term {"Status":"Waiting","IsEnrollmentActive":false,"LectureDaysAndSlots":{"DailySlots":[{"Day":"Monday","Slots":[],"$type":"DailySlots"},{"Day":"Tuesday","Slots":[{"SlotName":"string","StartTime":{"Hour":14,"Miniute":0,"$type":"SlotTime"},"EndTime":{"Hour":15,"Miniute":0,"$type":"SlotTime"},"$type":"Slot"},{"SlotName":"string","StartTime":{"Hour":15,"Miniute":15,"$type":"SlotTime"},"EndTime":{"Hour":16,"Miniute":15,"$type":"SlotTime"},"$type":"Slot"}],"$type":"DailySlots"}],"$type":"TermWeeklySlots"},"Semester":{"SemesterType":"Fall","Year":2022,"$type":"Semester"},"DomainEvents":null,"Id":0,"$type":"Term"}
+[17:34:50 INF]  Response: 21
+[17:35:55 INF]  Request: {"SemesterType":"Fall","Year":2022,"TermWeeklySlots":{"DailySlots":[{"Day":"Monday","Slots":[],"$type":"DailySlotsDTO"},{"Day":"Tuesday","Slots":[{"SlotName":"string","StartTime":{"Hour":14,"Miniute":0,"$type":"SlotTimeDTO"},"EndTime":{"Hour":15,"Miniute":0,"$type":"SlotTimeDTO"},"$type":"SlotDTO"},{"SlotName":"string","StartTime":{"Hour":15,"Miniute":15,"$type":"SlotTimeDTO"},"EndTime":{"Hour":16,"Miniute":15,"$type":"SlotTimeDTO"},"$type":"SlotDTO"}],"$type":"DailySlotsDTO"}],"$type":"TermWeeklySlotsDTO"},"$type":"CreateTermCommand"}
+[17:35:55 INF] StudentRegistration.Application.Commands.CreateTermCommandHandler Creating term {"Status":"Waiting","IsEnrollmentActive":false,"LectureDaysAndSlots":{"DailySlots":[{"Day":"Monday","Slots":[],"$type":"DailySlots"},{"Day":"Tuesday","Slots":[{"SlotName":"string","StartTime":{"Hour":14,"Miniute":0,"$type":"SlotTime"},"EndTime":{"Hour":15,"Miniute":0,"$type":"SlotTime"},"$type":"Slot"},{"SlotName":"string","StartTime":{"Hour":15,"Miniute":15,"$type":"SlotTime"},"EndTime":{"Hour":16,"Miniute":15,"$type":"SlotTime"},"$type":"Slot"}],"$type":"DailySlots"}],"$type":"TermWeeklySlots"},"Semester":{"SemesterType":"Fall","Year":2022,"$type":"Semester"},"DomainEvents":null,"Id":0,"$type":"Term"}
+[17:35:55 INF]  Response: 22
+[17:38:36 INF]  Request: {"SemesterType":"Fall","Year":2022,"TermWeeklySlots":null,"$type":"CreateTermCommand"}
+[17:38:37 INF] StudentRegistration.Application.Commands.CreateTermCommandHandler Creating term {"Status":"Waiting","IsEnrollmentActive":false,"LectureDaysAndSlots":null,"Semester":{"SemesterType":"Fall","Year":2022,"$type":"Semester"},"DomainEvents":null,"Id":0,"$type":"Term"}
+[17:38:37 INF]  Response: 23
+[17:39:37 INF]  Request: {"SemesterType":"Fall","Year":2022,"TermWeeklySlots":{"DailySlots":null,"$type":"TermWeeklySlotsDTO"},"$type":"CreateTermCommand"}
+[17:39:38 INF] StudentRegistration.Application.Commands.CreateTermCommandHandler Creating term {"Status":"Waiting","IsEnrollmentActive":false,"LectureDaysAndSlots":{"DailySlots":[],"$type":"TermWeeklySlots"},"Semester":{"SemesterType":"Fall","Year":2022,"$type":"Semester"},"DomainEvents":null,"Id":0,"$type":"Term"}
+[17:39:39 INF]  Response: 24
+[17:41:07 INF]  Request: {"SemesterType":"Fall","Year":2022,"TermWeeklySlots":null,"$type":"CreateTermCommand"}
+[17:41:07 INF] StudentRegistration.Application.Commands.CreateTermCommandHandler Creating term {"Status":"Waiting","IsEnrollmentActive":false,"LectureDaysAndSlots":null,"Semester":{"SemesterType":"Fall","Year":2022,"$type":"Semester"},"DomainEvents":null,"Id":0,"$type":"Term"}
+[17:41:07 INF]  Response: 25
+[17:41:25 INF]  Request: {"SemesterType":"Fall","Year":2022,"TermWeeklySlots":null,"$type":"CreateTermCommand"}
+[17:41:25 INF] StudentRegistration.Application.Commands.CreateTermCommandHandler Creating term {"Status":"Waiting","IsEnrollmentActive":false,"LectureDaysAndSlots":null,"Semester":{"SemesterType":"Fall","Year":2022,"$type":"Semester"},"DomainEvents":null,"Id":0,"$type":"Term"}
+[17:41:25 INF]  Response: 26
+[17:44:20 WRN]  Validation errors - Command: {"SemesterType":"Fall","Year":2022,"TermWeeklySlots":null,"$type":"CreateTermCommand"} - Errors: [{"PropertyName":"TermWeeklySlots","ErrorMessage":"Term Weekly Slots Cannot Be null","AttemptedValue":null,"CustomState":null,"Severity":"Error","ErrorCode":"NotNullValidator","FormattedMessagePlaceholderValues":{"PropertyName":"Term Weekly Slots","PropertyValue":null},"$type":"ValidationFailure"}]
+[17:44:49 ERR]  Exception
+FluentValidation.ValidationException: Validation exception
+   at StudentRegistration.Application.Behaviors.ValidatonBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next) in C:\Users\aydos\OneDrive\Masaüstü\Projects\StudentRegistration\src\Core\StudentRegistration.Application\Behaviors\ValidationBehavior.cs:line 30
+   at MediatR.Pipeline.RequestExceptionProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at MediatR.Pipeline.RequestExceptionProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at MediatR.Pipeline.RequestExceptionActionProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at MediatR.Pipeline.RequestExceptionActionProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at MediatR.Pipeline.RequestPostProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at MediatR.Pipeline.RequestPreProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at StudentRegistration.WebApi.Controllers.TermController.CreateTerm(CreateTermCommand command) in C:\Users\aydos\OneDrive\Masaüstü\Projects\StudentRegistration\src\WebApi\StudentRegistration.WebApi\Controllers\TermController.cs:line 21
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at StudentRegistration.WebApi.Middlewares.ExceptionHandlerMiddleware.Invoke(HttpContext context) in C:\Users\aydos\OneDrive\Masaüstü\Projects\StudentRegistration\src\WebApi\StudentRegistration.WebApi\Middlewares\ExceptionHandlerMiddleware.cs:line 25
+[17:58:12 ERR]  Validation errors - Command: {"SemesterType":"Fall","Year":2022,"TermWeeklySlots":null,"$type":"CreateTermCommand"} - Errors: [{"PropertyName":"TermWeeklySlots","ErrorMessage":"Term Weekly Slots Cannot Be null","AttemptedValue":null,"CustomState":null,"Severity":"Error","ErrorCode":"NotNullValidator","FormattedMessagePlaceholderValues":{"PropertyName":"Term Weekly Slots","PropertyValue":null},"$type":"ValidationFailure"}]
+[17:59:58 ERR]  Validation errors - Command: {"SemesterType":"Fall","Year":2022,"TermWeeklySlots":null,"$type":"CreateTermCommand"} - Errors: [{"PropertyName":"TermWeeklySlots","ErrorMessage":"Term Weekly Slots Cannot Be null","AttemptedValue":null,"CustomState":null,"Severity":"Error","ErrorCode":"NotNullValidator","FormattedMessagePlaceholderValues":{"PropertyName":"Term Weekly Slots","PropertyValue":null},"$type":"ValidationFailure"}]
+[18:01:49 INF]  Request: {"SemesterType":"Fall","Year":2022,"TermWeeklySlots":{"DailySlots":[{"Day":"Monday","Slots":[{"SlotName":"string","StartTime":{"Hour":8,"Miniute":30,"$type":"SlotTimeDTO"},"EndTime":{"Hour":5,"Miniute":30,"$type":"SlotTimeDTO"},"$type":"SlotDTO"},{"SlotName":"string","StartTime":{"Hour":9,"Miniute":30,"$type":"SlotTimeDTO"},"EndTime":{"Hour":10,"Miniute":30,"$type":"SlotTimeDTO"},"$type":"SlotDTO"}],"$type":"DailySlotsDTO"},{"Day":"Tuesday","Slots":[{"SlotName":"string","StartTime":{"Hour":14,"Miniute":0,"$type":"SlotTimeDTO"},"EndTime":{"Hour":15,"Miniute":0,"$type":"SlotTimeDTO"},"$type":"SlotDTO"},{"SlotName":"string","StartTime":{"Hour":15,"Miniute":15,"$type":"SlotTimeDTO"},"EndTime":{"Hour":16,"Miniute":15,"$type":"SlotTimeDTO"},"$type":"SlotDTO"}],"$type":"DailySlotsDTO"}],"$type":"TermWeeklySlotsDTO"},"$type":"CreateTermCommand"}
+[18:01:50 ERR]  Domain Exception
+StudentRegistration.Domain.Exceptions.StudentRegistrationDomainException: Slot start time cannot be later than end time
+   at StudentRegistration.Domain.ValueObjects.Slot..ctor(SlotTime startTime, SlotTime endTime, Int32 slotDuration) in C:\Users\aydos\OneDrive\Masaüstü\Projects\StudentRegistration\src\Core\StudentRegistration.Domain\ValueObjects\Slot.cs:line 18
+   at lambda_method16(Closure , List`1 , List`1 , ResolutionContext )
+[18:04:58 ERR]  Validation errors - Command: {"SemesterType":"Fall","Year":2022,"TermWeeklySlots":{"DailySlots":null,"$type":"TermWeeklySlotsDTO"},"$type":"CreateTermCommand"} - Errors: [{"PropertyName":"TermWeeklySlots.DailySlots","ErrorMessage":"Daily slots cannot be null","AttemptedValue":null,"CustomState":null,"Severity":"Error","ErrorCode":"NotNullValidator","FormattedMessagePlaceholderValues":{"PropertyName":"Term Weekly Slots Daily Slots","PropertyValue":null},"$type":"ValidationFailure"},{"PropertyName":"TermWeeklySlots.DailySlots","ErrorMessage":"Daily slots cannot be empty","AttemptedValue":null,"CustomState":null,"Severity":"Error","ErrorCode":"NotEmptyValidator","FormattedMessagePlaceholderValues":{"PropertyName":"Term Weekly Slots Daily Slots","PropertyValue":null},"$type":"ValidationFailure"}]
+[18:07:45 ERR]  Validation errors - Command: {"SemesterType":"Fall","Year":2022,"TermWeeklySlots":{"DailySlots":null,"$type":"TermWeeklySlotsDTO"},"$type":"CreateTermCommand"} - Errors: [{"PropertyName":"TermWeeklySlots.DailySlots","ErrorMessage":"Daily slots cannot be null","AttemptedValue":null,"CustomState":null,"Severity":"Error","ErrorCode":"NotNullValidator","FormattedMessagePlaceholderValues":{"PropertyName":"Term Weekly Slots Daily Slots","PropertyValue":null},"$type":"ValidationFailure"},{"PropertyName":"TermWeeklySlots.DailySlots","ErrorMessage":"Daily slots cannot be empty","AttemptedValue":null,"CustomState":null,"Severity":"Error","ErrorCode":"NotEmptyValidator","FormattedMessagePlaceholderValues":{"PropertyName":"Term Weekly Slots Daily Slots","PropertyValue":null},"$type":"ValidationFailure"}]
+[18:11:40 ERR]  Validation errors - Command: {"SemesterType":"Fall","Year":2022,"TermWeeklySlots":{"DailySlots":null,"$type":"TermWeeklySlotsDTO"},"$type":"CreateTermCommand"} - Errors: [{"PropertyName":"TermWeeklySlots.DailySlots","ErrorMessage":"Daily slots cannot be null","AttemptedValue":null,"CustomState":null,"Severity":"Error","ErrorCode":"NotNullValidator","FormattedMessagePlaceholderValues":{"PropertyName":"Term Weekly Slots Daily Slots","PropertyValue":null},"$type":"ValidationFailure"},{"PropertyName":"TermWeeklySlots.DailySlots","ErrorMessage":"Daily slots cannot be empty","AttemptedValue":null,"CustomState":null,"Severity":"Error","ErrorCode":"NotEmptyValidator","FormattedMessagePlaceholderValues":{"PropertyName":"Term Weekly Slots Daily Slots","PropertyValue":null},"$type":"ValidationFailure"}]
+[18:12:11 INF]  Request: {"SemesterType":"Fall","Year":2022,"TermWeeklySlots":{"DailySlots":[{"Day":"Monday","Slots":[{"SlotName":"string","StartTime":{"Hour":8,"Miniute":30,"$type":"SlotTimeDTO"},"EndTime":{"Hour":5,"Miniute":30,"$type":"SlotTimeDTO"},"$type":"SlotDTO"},{"SlotName":"string","StartTime":{"Hour":9,"Miniute":30,"$type":"SlotTimeDTO"},"EndTime":{"Hour":10,"Miniute":30,"$type":"SlotTimeDTO"},"$type":"SlotDTO"}],"$type":"DailySlotsDTO"},{"Day":"Tuesday","Slots":[{"SlotName":"string","StartTime":{"Hour":14,"Miniute":0,"$type":"SlotTimeDTO"},"EndTime":{"Hour":15,"Miniute":0,"$type":"SlotTimeDTO"},"$type":"SlotDTO"},{"SlotName":"string","StartTime":{"Hour":15,"Miniute":15,"$type":"SlotTimeDTO"},"EndTime":{"Hour":16,"Miniute":15,"$type":"SlotTimeDTO"},"$type":"SlotDTO"}],"$type":"DailySlotsDTO"}],"$type":"TermWeeklySlotsDTO"},"$type":"CreateTermCommand"}
+[18:12:11 ERR]  Domain Exception
+StudentRegistration.Domain.Exceptions.StudentRegistrationDomainException: Slot start time cannot be later than end time
+   at StudentRegistration.Domain.ValueObjects.Slot..ctor(SlotTime startTime, SlotTime endTime, Int32 slotDuration) in C:\Users\aydos\OneDrive\Masaüstü\Projects\StudentRegistration\src\Core\StudentRegistration.Domain\ValueObjects\Slot.cs:line 18
+   at lambda_method16(Closure , List`1 , List`1 , ResolutionContext )
+[18:14:58 INF]  Request: {"SemesterType":"Fall","Year":2022,"TermWeeklySlots":{"DailySlots":[{"Day":"Monday","Slots":[{"SlotName":"string","StartTime":{"Hour":8,"Miniute":30,"$type":"SlotTimeDTO"},"EndTime":{"Hour":5,"Miniute":30,"$type":"SlotTimeDTO"},"$type":"SlotDTO"},{"SlotName":"string","StartTime":{"Hour":9,"Miniute":30,"$type":"SlotTimeDTO"},"EndTime":{"Hour":10,"Miniute":30,"$type":"SlotTimeDTO"},"$type":"SlotDTO"}],"$type":"DailySlotsDTO"},{"Day":"Tuesday","Slots":[{"SlotName":"string","StartTime":{"Hour":14,"Miniute":0,"$type":"SlotTimeDTO"},"EndTime":{"Hour":15,"Miniute":0,"$type":"SlotTimeDTO"},"$type":"SlotDTO"},{"SlotName":"string","StartTime":{"Hour":15,"Miniute":15,"$type":"SlotTimeDTO"},"EndTime":{"Hour":16,"Miniute":15,"$type":"SlotTimeDTO"},"$type":"SlotDTO"}],"$type":"DailySlotsDTO"}],"$type":"TermWeeklySlotsDTO"},"$type":"CreateTermCommand"}
+[18:14:58 ERR]  Domain Exception
+StudentRegistration.Domain.Exceptions.StudentRegistrationDomainException: Slot start time cannot be later than end time
+   at StudentRegistration.Domain.ValueObjects.Slot..ctor(SlotTime startTime, SlotTime endTime, Int32 slotDuration) in C:\Users\aydos\OneDrive\Masaüstü\Projects\StudentRegistration\src\Core\StudentRegistration.Domain\ValueObjects\Slot.cs:line 18
+   at lambda_method16(Closure , List`1 , List`1 , ResolutionContext )
+[18:15:01 ERR]  Validation errors - Command: {"SemesterType":"Fall","Year":2022,"TermWeeklySlots":{"DailySlots":null,"$type":"TermWeeklySlotsDTO"},"$type":"CreateTermCommand"} - Errors: [{"PropertyName":"TermWeeklySlots.DailySlots","ErrorMessage":"Daily slots cannot be null","AttemptedValue":null,"CustomState":null,"Severity":"Error","ErrorCode":"NotNullValidator","FormattedMessagePlaceholderValues":{"PropertyName":"Term Weekly Slots Daily Slots","PropertyValue":null},"$type":"ValidationFailure"},{"PropertyName":"TermWeeklySlots.DailySlots","ErrorMessage":"Daily slots cannot be empty","AttemptedValue":null,"CustomState":null,"Severity":"Error","ErrorCode":"NotEmptyValidator","FormattedMessagePlaceholderValues":{"PropertyName":"Term Weekly Slots Daily Slots","PropertyValue":null},"$type":"ValidationFailure"}]
+[18:28:58 ERR]  Validation errors - Command: {"SemesterType":"Fall","Year":2022,"TermWeeklySlots":{"DailySlots":null,"$type":"TermWeeklySlotsDTO"},"$type":"CreateTermCommand"} - Errors: [{"PropertyName":"TermWeeklySlots.DailySlots","ErrorMessage":"Daily slots cannot be null","AttemptedValue":null,"CustomState":null,"Severity":"Error","ErrorCode":"NotNullValidator","FormattedMessagePlaceholderValues":{"PropertyName":"Term Weekly Slots Daily Slots","PropertyValue":null},"$type":"ValidationFailure"},{"PropertyName":"TermWeeklySlots.DailySlots","ErrorMessage":"Daily slots cannot be empty","AttemptedValue":null,"CustomState":null,"Severity":"Error","ErrorCode":"NotEmptyValidator","FormattedMessagePlaceholderValues":{"PropertyName":"Term Weekly Slots Daily Slots","PropertyValue":null},"$type":"ValidationFailure"}]
+[18:29:05 INF]  Request: {"SemesterType":"Fall","Year":2022,"TermWeeklySlots":{"DailySlots":[{"Day":"Monday","Slots":[{"SlotName":"string","StartTime":{"Hour":8,"Miniute":30,"$type":"SlotTimeDTO"},"EndTime":{"Hour":5,"Miniute":30,"$type":"SlotTimeDTO"},"$type":"SlotDTO"},{"SlotName":"string","StartTime":{"Hour":9,"Miniute":30,"$type":"SlotTimeDTO"},"EndTime":{"Hour":10,"Miniute":30,"$type":"SlotTimeDTO"},"$type":"SlotDTO"}],"$type":"DailySlotsDTO"},{"Day":"Tuesday","Slots":[{"SlotName":"string","StartTime":{"Hour":14,"Miniute":0,"$type":"SlotTimeDTO"},"EndTime":{"Hour":15,"Miniute":0,"$type":"SlotTimeDTO"},"$type":"SlotDTO"},{"SlotName":"string","StartTime":{"Hour":15,"Miniute":15,"$type":"SlotTimeDTO"},"EndTime":{"Hour":16,"Miniute":15,"$type":"SlotTimeDTO"},"$type":"SlotDTO"}],"$type":"DailySlotsDTO"}],"$type":"TermWeeklySlotsDTO"},"$type":"CreateTermCommand"}
+[18:29:06 ERR]  Domain Exception
+StudentRegistration.Domain.Exceptions.StudentRegistrationDomainException: Slot start time cannot be later than end time
+   at StudentRegistration.Domain.ValueObjects.Slot..ctor(SlotTime startTime, SlotTime endTime, Int32 slotDuration) in C:\Users\aydos\OneDrive\Masaüstü\Projects\StudentRegistration\src\Core\StudentRegistration.Domain\ValueObjects\Slot.cs:line 18
+   at lambda_method16(Closure , List`1 , List`1 , ResolutionContext )
+[21:14:58 INF]  Request: {"SemesterType":"Fall","Year":2022,"TermWeeklySlots":{"DailySlots":[{"Day":"Monday","Slots":[{"SlotName":"string","StartTime":{"Hour":8,"Miniute":30,"$type":"SlotTimeDTO"},"EndTime":{"Hour":9,"Miniute":30,"$type":"SlotTimeDTO"},"$type":"SlotDTO"},{"SlotName":"string","StartTime":{"Hour":9,"Miniute":30,"$type":"SlotTimeDTO"},"EndTime":{"Hour":10,"Miniute":30,"$type":"SlotTimeDTO"},"$type":"SlotDTO"}],"$type":"DailySlotsDTO"},{"Day":"Tuesday","Slots":[{"SlotName":"string","StartTime":{"Hour":14,"Miniute":0,"$type":"SlotTimeDTO"},"EndTime":{"Hour":15,"Miniute":0,"$type":"SlotTimeDTO"},"$type":"SlotDTO"},{"SlotName":"string","StartTime":{"Hour":15,"Miniute":15,"$type":"SlotTimeDTO"},"EndTime":{"Hour":16,"Miniute":15,"$type":"SlotTimeDTO"},"$type":"SlotDTO"}],"$type":"DailySlotsDTO"}],"$type":"TermWeeklySlotsDTO"},"$type":"CreateTermCommand"}
+[21:14:59 INF] StudentRegistration.Application.Commands.CreateTermCommandHandler Creating term {"Status":"Waiting","IsEnrollmentActive":false,"LectureDaysAndSlots":{"DailySlots":[{"Day":"Monday","Slots":[{"SlotName":"string","StartTime":{"Hour":8,"Miniute":30,"$type":"SlotTime"},"EndTime":{"Hour":9,"Miniute":30,"$type":"SlotTime"},"$type":"Slot"},{"SlotName":"string","StartTime":{"Hour":9,"Miniute":30,"$type":"SlotTime"},"EndTime":{"Hour":10,"Miniute":30,"$type":"SlotTime"},"$type":"Slot"}],"$type":"DailySlots"},{"Day":"Tuesday","Slots":[{"SlotName":"string","StartTime":{"Hour":14,"Miniute":0,"$type":"SlotTime"},"EndTime":{"Hour":15,"Miniute":0,"$type":"SlotTime"},"$type":"Slot"},{"SlotName":"string","StartTime":{"Hour":15,"Miniute":15,"$type":"SlotTime"},"EndTime":{"Hour":16,"Miniute":15,"$type":"SlotTime"},"$type":"Slot"}],"$type":"DailySlots"}],"$type":"TermWeeklySlots"},"Semester":{"SemesterType":"Fall","Year":2022,"$type":"Semester"},"DomainEvents":null,"Id":0,"$type":"Term"}
+[21:14:59 INF]  Response: 27
+[21:49:22 INF]  Request: {"SemesterType":"Fall","Year":2022,"TermWeeklySlots":{"DailySlots":[{"Day":"Monday","Slots":[{"SlotName":"string","StartTime":{"Hour":8,"Miniute":30,"$type":"SlotTimeDTO"},"EndTime":{"Hour":9,"Miniute":30,"$type":"SlotTimeDTO"},"$type":"SlotDTO"},{"SlotName":"string","StartTime":{"Hour":9,"Miniute":30,"$type":"SlotTimeDTO"},"EndTime":{"Hour":10,"Miniute":30,"$type":"SlotTimeDTO"},"$type":"SlotDTO"}],"$type":"DailySlotsDTO"},{"Day":"Tuesday","Slots":[{"SlotName":"string","StartTime":{"Hour":14,"Miniute":0,"$type":"SlotTimeDTO"},"EndTime":{"Hour":15,"Miniute":0,"$type":"SlotTimeDTO"},"$type":"SlotDTO"},{"SlotName":"string","StartTime":{"Hour":15,"Miniute":15,"$type":"SlotTimeDTO"},"EndTime":{"Hour":16,"Miniute":15,"$type":"SlotTimeDTO"},"$type":"SlotDTO"}],"$type":"DailySlotsDTO"}],"$type":"TermWeeklySlotsDTO"},"$type":"CreateTermCommand"}
+[21:49:23 INF] StudentRegistration.Application.Commands.CreateTermCommandHandler Creating term {"Status":"Waiting","IsEnrollmentActive":false,"LectureDaysAndSlots":{"DailySlots":[{"Day":"Monday","Slots":[{"SlotName":"string","StartTime":{"Hour":8,"Miniute":30,"$type":"SlotTime"},"EndTime":{"Hour":9,"Miniute":30,"$type":"SlotTime"},"$type":"Slot"},{"SlotName":"string","StartTime":{"Hour":9,"Miniute":30,"$type":"SlotTime"},"EndTime":{"Hour":10,"Miniute":30,"$type":"SlotTime"},"$type":"Slot"}],"$type":"DailySlots"},{"Day":"Tuesday","Slots":[{"SlotName":"string","StartTime":{"Hour":14,"Miniute":0,"$type":"SlotTime"},"EndTime":{"Hour":15,"Miniute":0,"$type":"SlotTime"},"$type":"Slot"},{"SlotName":"string","StartTime":{"Hour":15,"Miniute":15,"$type":"SlotTime"},"EndTime":{"Hour":16,"Miniute":15,"$type":"SlotTime"},"$type":"Slot"}],"$type":"DailySlots"}],"$type":"TermWeeklySlots"},"Semester":{"SemesterType":"Fall","Year":2022,"$type":"Semester"},"DomainEvents":null,"Id":0,"$type":"Term"}
+[21:49:24 INF]  Response: 28
+[21:50:20 INF]  Request: {"SemesterType":"Fall","Year":2022,"TermWeeklySlots":{"DailySlots":[{"Day":"Monday","Slots":[{"SlotName":"string","StartTime":{"Hour":8,"Miniute":30,"$type":"SlotTimeDTO"},"EndTime":{"Hour":9,"Miniute":30,"$type":"SlotTimeDTO"},"$type":"SlotDTO"},{"SlotName":"string","StartTime":{"Hour":9,"Miniute":30,"$type":"SlotTimeDTO"},"EndTime":{"Hour":10,"Miniute":30,"$type":"SlotTimeDTO"},"$type":"SlotDTO"}],"$type":"DailySlotsDTO"},{"Day":"Tuesday","Slots":[{"SlotName":"string","StartTime":{"Hour":14,"Miniute":0,"$type":"SlotTimeDTO"},"EndTime":{"Hour":15,"Miniute":0,"$type":"SlotTimeDTO"},"$type":"SlotDTO"},{"SlotName":"string","StartTime":{"Hour":15,"Miniute":15,"$type":"SlotTimeDTO"},"EndTime":{"Hour":16,"Miniute":15,"$type":"SlotTimeDTO"},"$type":"SlotDTO"}],"$type":"DailySlotsDTO"}],"$type":"TermWeeklySlotsDTO"},"$type":"CreateTermCommand"}
+[21:50:20 INF] StudentRegistration.Application.Commands.CreateTermCommandHandler Creating term {"Status":"Waiting","IsEnrollmentActive":false,"LectureDaysAndSlots":{"DailySlots":[{"Day":"Monday","Slots":[{"SlotName":"string","StartTime":{"Hour":8,"Miniute":30,"$type":"SlotTime"},"EndTime":{"Hour":9,"Miniute":30,"$type":"SlotTime"},"$type":"Slot"},{"SlotName":"string","StartTime":{"Hour":9,"Miniute":30,"$type":"SlotTime"},"EndTime":{"Hour":10,"Miniute":30,"$type":"SlotTime"},"$type":"Slot"}],"$type":"DailySlots"},{"Day":"Tuesday","Slots":[{"SlotName":"string","StartTime":{"Hour":14,"Miniute":0,"$type":"SlotTime"},"EndTime":{"Hour":15,"Miniute":0,"$type":"SlotTime"},"$type":"Slot"},{"SlotName":"string","StartTime":{"Hour":15,"Miniute":15,"$type":"SlotTime"},"EndTime":{"Hour":16,"Miniute":15,"$type":"SlotTime"},"$type":"Slot"}],"$type":"DailySlots"}],"$type":"TermWeeklySlots"},"Semester":{"SemesterType":"Fall","Year":2022,"$type":"Semester"},"DomainEvents":null,"Id":0,"$type":"Term"}
+[21:50:20 INF]  Response: 29
+[21:54:50 INF] CorrelationId: test1234 
+  Request: {"SemesterType":"Fall","Year":2022,"TermWeeklySlots":{"DailySlots":[{"Day":"Monday","Slots":[{"SlotName":"string","StartTime":{"Hour":8,"Miniute":30,"$type":"SlotTimeDTO"},"EndTime":{"Hour":9,"Miniute":30,"$type":"SlotTimeDTO"},"$type":"SlotDTO"},{"SlotName":"string","StartTime":{"Hour":9,"Miniute":30,"$type":"SlotTimeDTO"},"EndTime":{"Hour":10,"Miniute":30,"$type":"SlotTimeDTO"},"$type":"SlotDTO"}],"$type":"DailySlotsDTO"},{"Day":"Tuesday","Slots":[{"SlotName":"string","StartTime":{"Hour":14,"Miniute":0,"$type":"SlotTimeDTO"},"EndTime":{"Hour":15,"Miniute":0,"$type":"SlotTimeDTO"},"$type":"SlotDTO"},{"SlotName":"string","StartTime":{"Hour":15,"Miniute":15,"$type":"SlotTimeDTO"},"EndTime":{"Hour":16,"Miniute":15,"$type":"SlotTimeDTO"},"$type":"SlotDTO"}],"$type":"DailySlotsDTO"}],"$type":"TermWeeklySlotsDTO"},"$type":"CreateTermCommand"}
+[21:54:51 INF] CorrelationId: test1234 
+ StudentRegistration.Application.Commands.CreateTermCommandHandler Creating term {"Status":"Waiting","IsEnrollmentActive":false,"LectureDaysAndSlots":{"DailySlots":[{"Day":"Monday","Slots":[{"SlotName":"string","StartTime":{"Hour":8,"Miniute":30,"$type":"SlotTime"},"EndTime":{"Hour":9,"Miniute":30,"$type":"SlotTime"},"$type":"Slot"},{"SlotName":"string","StartTime":{"Hour":9,"Miniute":30,"$type":"SlotTime"},"EndTime":{"Hour":10,"Miniute":30,"$type":"SlotTime"},"$type":"Slot"}],"$type":"DailySlots"},{"Day":"Tuesday","Slots":[{"SlotName":"string","StartTime":{"Hour":14,"Miniute":0,"$type":"SlotTime"},"EndTime":{"Hour":15,"Miniute":0,"$type":"SlotTime"},"$type":"Slot"},{"SlotName":"string","StartTime":{"Hour":15,"Miniute":15,"$type":"SlotTime"},"EndTime":{"Hour":16,"Miniute":15,"$type":"SlotTime"},"$type":"Slot"}],"$type":"DailySlots"}],"$type":"TermWeeklySlots"},"Semester":{"SemesterType":"Fall","Year":2022,"$type":"Semester"},"DomainEvents":null,"Id":0,"$type":"Term"}
+[21:54:51 INF] CorrelationId: test1234 
+  Response: 30
+[21:56:14 ERR] CorrelationId: exc0123 
+  Validation errors - Command: {"SemesterType":"Fall","Year":2022,"TermWeeklySlots":{"DailySlots":null,"$type":"TermWeeklySlotsDTO"},"$type":"CreateTermCommand"} - Errors: [{"PropertyName":"TermWeeklySlots.DailySlots","ErrorMessage":"Daily slots cannot be null","AttemptedValue":null,"CustomState":null,"Severity":"Error","ErrorCode":"NotNullValidator","FormattedMessagePlaceholderValues":{"PropertyName":"Term Weekly Slots Daily Slots","PropertyValue":null},"$type":"ValidationFailure"},{"PropertyName":"TermWeeklySlots.DailySlots","ErrorMessage":"Daily slots cannot be empty","AttemptedValue":null,"CustomState":null,"Severity":"Error","ErrorCode":"NotEmptyValidator","FormattedMessagePlaceholderValues":{"PropertyName":"Term Weekly Slots Daily Slots","PropertyValue":null},"$type":"ValidationFailure"}]
+----------------------------------
+[21:58:35 ERR] 
+CorrelationId: exc0123 
+ 
+ Validation errors - Command: {"SemesterType":"Fall","Year":2022,"TermWeeklySlots":{"DailySlots":null,"$type":"TermWeeklySlotsDTO"},"$type":"CreateTermCommand"} - Errors: [{"PropertyName":"TermWeeklySlots.DailySlots","ErrorMessage":"Daily slots cannot be null","AttemptedValue":null,"CustomState":null,"Severity":"Error","ErrorCode":"NotNullValidator","FormattedMessagePlaceholderValues":{"PropertyName":"Term Weekly Slots Daily Slots","PropertyValue":null},"$type":"ValidationFailure"},{"PropertyName":"TermWeeklySlots.DailySlots","ErrorMessage":"Daily slots cannot be empty","AttemptedValue":null,"CustomState":null,"Severity":"Error","ErrorCode":"NotEmptyValidator","FormattedMessagePlaceholderValues":{"PropertyName":"Term Weekly Slots Daily Slots","PropertyValue":null},"$type":"ValidationFailure"}]
+----------------------------------
+----------------------------------
+[21:59:03 INF] 
+CorrelationId: test1234 
+ 
+ Request: {"SemesterType":"Fall","Year":2022,"TermWeeklySlots":{"DailySlots":[{"Day":"Monday","Slots":[{"SlotName":"string","StartTime":{"Hour":8,"Miniute":30,"$type":"SlotTimeDTO"},"EndTime":{"Hour":9,"Miniute":30,"$type":"SlotTimeDTO"},"$type":"SlotDTO"},{"SlotName":"string","StartTime":{"Hour":9,"Miniute":30,"$type":"SlotTimeDTO"},"EndTime":{"Hour":10,"Miniute":30,"$type":"SlotTimeDTO"},"$type":"SlotDTO"}],"$type":"DailySlotsDTO"},{"Day":"Tuesday","Slots":[{"SlotName":"string","StartTime":{"Hour":14,"Miniute":0,"$type":"SlotTimeDTO"},"EndTime":{"Hour":15,"Miniute":0,"$type":"SlotTimeDTO"},"$type":"SlotDTO"},{"SlotName":"string","StartTime":{"Hour":15,"Miniute":15,"$type":"SlotTimeDTO"},"EndTime":{"Hour":16,"Miniute":15,"$type":"SlotTimeDTO"},"$type":"SlotDTO"}],"$type":"DailySlotsDTO"}],"$type":"TermWeeklySlotsDTO"},"$type":"CreateTermCommand"}
+----------------------------------
+----------------------------------
+[21:59:04 INF] 
+CorrelationId: test1234 
+ StudentRegistration.Application.Commands.CreateTermCommandHandler
+ Creating term {"Status":"Waiting","IsEnrollmentActive":false,"LectureDaysAndSlots":{"DailySlots":[{"Day":"Monday","Slots":[{"SlotName":"string","StartTime":{"Hour":8,"Miniute":30,"$type":"SlotTime"},"EndTime":{"Hour":9,"Miniute":30,"$type":"SlotTime"},"$type":"Slot"},{"SlotName":"string","StartTime":{"Hour":9,"Miniute":30,"$type":"SlotTime"},"EndTime":{"Hour":10,"Miniute":30,"$type":"SlotTime"},"$type":"Slot"}],"$type":"DailySlots"},{"Day":"Tuesday","Slots":[{"SlotName":"string","StartTime":{"Hour":14,"Miniute":0,"$type":"SlotTime"},"EndTime":{"Hour":15,"Miniute":0,"$type":"SlotTime"},"$type":"Slot"},{"SlotName":"string","StartTime":{"Hour":15,"Miniute":15,"$type":"SlotTime"},"EndTime":{"Hour":16,"Miniute":15,"$type":"SlotTime"},"$type":"Slot"}],"$type":"DailySlots"}],"$type":"TermWeeklySlots"},"Semester":{"SemesterType":"Fall","Year":2022,"$type":"Semester"},"DomainEvents":null,"Id":0,"$type":"Term"}
+----------------------------------
+----------------------------------
+[21:59:04 INF] 
+CorrelationId: test1234 
+ 
+ Response: 31
+----------------------------------
+----------------------------------
+[22:00:01 ERR]  
+CorrelationId: exc0123 
+ Validation errors - Command: {"SemesterType":"Fall","Year":2022,"TermWeeklySlots":{"DailySlots":null,"$type":"TermWeeklySlotsDTO"},"$type":"CreateTermCommand"} - Errors: [{"PropertyName":"TermWeeklySlots.DailySlots","ErrorMessage":"Daily slots cannot be null","AttemptedValue":null,"CustomState":null,"Severity":"Error","ErrorCode":"NotNullValidator","FormattedMessagePlaceholderValues":{"PropertyName":"Term Weekly Slots Daily Slots","PropertyValue":null},"$type":"ValidationFailure"},{"PropertyName":"TermWeeklySlots.DailySlots","ErrorMessage":"Daily slots cannot be empty","AttemptedValue":null,"CustomState":null,"Severity":"Error","ErrorCode":"NotEmptyValidator","FormattedMessagePlaceholderValues":{"PropertyName":"Term Weekly Slots Daily Slots","PropertyValue":null},"$type":"ValidationFailure"}]
+----------------------------------
+----------------------------------
+[22:02:29 INF]  
+CorrelationId: exc0123 
+ Request: {"SemesterType":"Fall","Year":2022,"TermWeeklySlots":{"DailySlots":null,"$type":"TermWeeklySlotsDTO"},"$type":"CreateTermCommand"}
+----------------------------------
+----------------------------------
+[22:02:29 ERR]  
+CorrelationId: exc0123 
+ Validation errors - Command: {"SemesterType":"Fall","Year":2022,"TermWeeklySlots":{"DailySlots":null,"$type":"TermWeeklySlotsDTO"},"$type":"CreateTermCommand"} - Errors: [{"PropertyName":"TermWeeklySlots.DailySlots","ErrorMessage":"Daily slots cannot be null","AttemptedValue":null,"CustomState":null,"Severity":"Error","ErrorCode":"NotNullValidator","FormattedMessagePlaceholderValues":{"PropertyName":"Term Weekly Slots Daily Slots","PropertyValue":null},"$type":"ValidationFailure"},{"PropertyName":"TermWeeklySlots.DailySlots","ErrorMessage":"Daily slots cannot be empty","AttemptedValue":null,"CustomState":null,"Severity":"Error","ErrorCode":"NotEmptyValidator","FormattedMessagePlaceholderValues":{"PropertyName":"Term Weekly Slots Daily Slots","PropertyValue":null},"$type":"ValidationFailure"}]
+----------------------------------
+----------------------------------
+[22:02:45 INF]  
+CorrelationId: exc01234 
+ Request: {"SemesterType":"Fall","Year":2022,"TermWeeklySlots":{"DailySlots":null,"$type":"TermWeeklySlotsDTO"},"$type":"CreateTermCommand"}
+----------------------------------
+----------------------------------
+[22:02:45 ERR]  
+CorrelationId: exc01234 
+ Validation errors - Command: {"SemesterType":"Fall","Year":2022,"TermWeeklySlots":{"DailySlots":null,"$type":"TermWeeklySlotsDTO"},"$type":"CreateTermCommand"} - Errors: [{"PropertyName":"TermWeeklySlots.DailySlots","ErrorMessage":"Daily slots cannot be null","AttemptedValue":null,"CustomState":null,"Severity":"Error","ErrorCode":"NotNullValidator","FormattedMessagePlaceholderValues":{"PropertyName":"Term Weekly Slots Daily Slots","PropertyValue":null},"$type":"ValidationFailure"},{"PropertyName":"TermWeeklySlots.DailySlots","ErrorMessage":"Daily slots cannot be empty","AttemptedValue":null,"CustomState":null,"Severity":"Error","ErrorCode":"NotEmptyValidator","FormattedMessagePlaceholderValues":{"PropertyName":"Term Weekly Slots Daily Slots","PropertyValue":null},"$type":"ValidationFailure"}]
+----------------------------------
+----------------------------------
+[22:07:30 INF]  
+CorrelationId: exc01234 
+ Handler Name CreateTermCommand 
+ Request: {"SemesterType":"Fall","Year":2022,"TermWeeklySlots":{"DailySlots":null,"$type":"TermWeeklySlotsDTO"},"$type":"CreateTermCommand"}
+----------------------------------
+----------------------------------
+[22:07:30 ERR]  
+CorrelationId: exc01234 
+ Validation errors - Command: {"SemesterType":"Fall","Year":2022,"TermWeeklySlots":{"DailySlots":null,"$type":"TermWeeklySlotsDTO"},"$type":"CreateTermCommand"} - Errors: [{"PropertyName":"TermWeeklySlots.DailySlots","ErrorMessage":"Daily slots cannot be null","AttemptedValue":null,"CustomState":null,"Severity":"Error","ErrorCode":"NotNullValidator","FormattedMessagePlaceholderValues":{"PropertyName":"Term Weekly Slots Daily Slots","PropertyValue":null},"$type":"ValidationFailure"},{"PropertyName":"TermWeeklySlots.DailySlots","ErrorMessage":"Daily slots cannot be empty","AttemptedValue":null,"CustomState":null,"Severity":"Error","ErrorCode":"NotEmptyValidator","FormattedMessagePlaceholderValues":{"PropertyName":"Term Weekly Slots Daily Slots","PropertyValue":null},"$type":"ValidationFailure"}]
+----------------------------------
+----------------------------------
+[22:09:26 INF]  
+CorrelationId: exc01234 
+ Handler Name CreateTermCommand 
+ Request: {"SemesterType":"Fall","Year":2022,"TermWeeklySlots":{"DailySlots":null,"$type":"TermWeeklySlotsDTO"},"$type":"CreateTermCommand"}
+----------------------------------
+----------------------------------
+[22:09:26 ERR]  
+CorrelationId: exc01234 
+ Validation errors CreateTermCommand 
+ Command: {"SemesterType":"Fall","Year":2022,"TermWeeklySlots":{"DailySlots":null,"$type":"TermWeeklySlotsDTO"},"$type":"CreateTermCommand"} 
+ Errors: [{"PropertyName":"TermWeeklySlots.DailySlots","ErrorMessage":"Daily slots cannot be null","AttemptedValue":null,"CustomState":null,"Severity":"Error","ErrorCode":"NotNullValidator","FormattedMessagePlaceholderValues":{"PropertyName":"Term Weekly Slots Daily Slots","PropertyValue":null},"$type":"ValidationFailure"},{"PropertyName":"TermWeeklySlots.DailySlots","ErrorMessage":"Daily slots cannot be empty","AttemptedValue":null,"CustomState":null,"Severity":"Error","ErrorCode":"NotEmptyValidator","FormattedMessagePlaceholderValues":{"PropertyName":"Term Weekly Slots Daily Slots","PropertyValue":null},"$type":"ValidationFailure"}]
+----------------------------------
+----------------------------------
+[22:26:10 INF]  
+CorrelationId: test1234 
+ Handler Name CreateTermCommand 
+ Request: {"SemesterType":"Fall","Year":2022,"TermWeeklySlots":{"DailySlots":[{"Day":"Monday","Slots":[{"SlotName":"string","StartTime":{"Hour":8,"Miniute":30,"$type":"SlotTimeDTO"},"EndTime":{"Hour":9,"Miniute":30,"$type":"SlotTimeDTO"},"$type":"SlotDTO"},{"SlotName":"string","StartTime":{"Hour":9,"Miniute":30,"$type":"SlotTimeDTO"},"EndTime":{"Hour":10,"Miniute":30,"$type":"SlotTimeDTO"},"$type":"SlotDTO"}],"$type":"DailySlotsDTO"},{"Day":"Tuesday","Slots":[{"SlotName":"string","StartTime":{"Hour":14,"Miniute":0,"$type":"SlotTimeDTO"},"EndTime":{"Hour":15,"Miniute":0,"$type":"SlotTimeDTO"},"$type":"SlotDTO"},{"SlotName":"string","StartTime":{"Hour":15,"Miniute":15,"$type":"SlotTimeDTO"},"EndTime":{"Hour":16,"Miniute":15,"$type":"SlotTimeDTO"},"$type":"SlotDTO"}],"$type":"DailySlotsDTO"}],"$type":"TermWeeklySlotsDTO"},"$type":"CreateTermCommand"}
+----------------------------------
+----------------------------------
+[22:26:11 INF] StudentRegistration.Application.Commands.CreateTermCommandHandler 
+CorrelationId: test1234 
+ Creating term {"Status":"Waiting","IsEnrollmentActive":false,"LectureDaysAndSlots":{"DailySlots":[{"Day":"Monday","Slots":[{"SlotName":"string","StartTime":{"Hour":8,"Miniute":30,"$type":"SlotTime"},"EndTime":{"Hour":9,"Miniute":30,"$type":"SlotTime"},"$type":"Slot"},{"SlotName":"string","StartTime":{"Hour":9,"Miniute":30,"$type":"SlotTime"},"EndTime":{"Hour":10,"Miniute":30,"$type":"SlotTime"},"$type":"Slot"}],"$type":"DailySlots"},{"Day":"Tuesday","Slots":[{"SlotName":"string","StartTime":{"Hour":14,"Miniute":0,"$type":"SlotTime"},"EndTime":{"Hour":15,"Miniute":0,"$type":"SlotTime"},"$type":"Slot"},{"SlotName":"string","StartTime":{"Hour":15,"Miniute":15,"$type":"SlotTime"},"EndTime":{"Hour":16,"Miniute":15,"$type":"SlotTime"},"$type":"Slot"}],"$type":"DailySlots"}],"$type":"TermWeeklySlots"},"Semester":{"SemesterType":"Fall","Year":2022,"$type":"Semester"},"DomainEvents":null,"Id":0,"$type":"Term"}
+----------------------------------
+----------------------------------
+[22:26:11 ERR]  
+CorrelationId: test1234 
+ Exception
+Microsoft.Data.Sqlite.SqliteException (0x80004005): SQLite Error 14: 'unable to open database file'.
+   at Microsoft.Data.Sqlite.SqliteException.ThrowExceptionForRC(Int32 rc, sqlite3 db)
+   at Microsoft.Data.Sqlite.SqliteConnectionInternal..ctor(SqliteConnectionStringBuilder connectionOptions, SqliteConnectionPool pool)
+   at Microsoft.Data.Sqlite.SqliteConnectionPool.GetConnection()
+   at Microsoft.Data.Sqlite.SqliteConnectionFactory.GetConnection(SqliteConnection outerConnection)
+   at Microsoft.Data.Sqlite.SqliteConnection.Open()
+   at System.Data.Common.DbConnection.OpenAsync(CancellationToken cancellationToken)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenAsync(CancellationToken cancellationToken, Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.BeginTransactionAsync(IsolationLevel isolationLevel, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.BeginTransactionAsync(CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at StudentRegistration.Infrastructure.StudentRegistrationContext.Save() in C:\Users\aydos\OneDrive\Masaüstü\Projects\StudentRegistration\src\Infrastructure\StudentRegistration.Infrastructure\StudentRegistrationContext.cs:line 60
+   at StudentRegistration.Application.Commands.CreateTermCommandHandler.Handle(CreateTermCommand request, CancellationToken cancellationToken) in C:\Users\aydos\OneDrive\Masaüstü\Projects\StudentRegistration\src\Core\StudentRegistration.Application\Commands\Term\CreateTerm\CreateTermCommandHandler.cs:line 33
+   at StudentRegistration.Application.Behaviors.ValidatonBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next) in C:\Users\aydos\OneDrive\Masaüstü\Projects\StudentRegistration\src\Core\StudentRegistration.Application\Behaviors\ValidationBehavior.cs:line 36
+   at StudentRegistration.Application.Behaviors.LoggingBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next) in C:\Users\aydos\OneDrive\Masaüstü\Projects\StudentRegistration\src\Core\StudentRegistration.Application\Behaviors\LoggingBehavior.cs:line 18
+   at MediatR.Pipeline.RequestExceptionProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at MediatR.Pipeline.RequestExceptionProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at MediatR.Pipeline.RequestExceptionActionProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at MediatR.Pipeline.RequestExceptionActionProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at MediatR.Pipeline.RequestPostProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at MediatR.Pipeline.RequestPreProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at StudentRegistration.WebApi.Controllers.TermController.CreateTerm(CreateTermCommand command) in C:\Users\aydos\OneDrive\Masaüstü\Projects\StudentRegistration\src\WebApi\StudentRegistration.WebApi\Controllers\TermController.cs:line 21
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at StudentRegistration.WebApi.Middlewares.ExceptionHandlerMiddleware.Invoke(HttpContext context) in C:\Users\aydos\OneDrive\Masaüstü\Projects\StudentRegistration\src\WebApi\StudentRegistration.WebApi\Middlewares\ExceptionHandlerMiddleware.cs:line 26
+----------------------------------
+----------------------------------
+[22:28:22 INF]  
+CorrelationId: test1234 
+ Handler Name CreateTermCommand 
+ Request: {"SemesterType":"Fall","Year":2022,"TermWeeklySlots":{"DailySlots":[{"Day":"Monday","Slots":[{"SlotName":"string","StartTime":{"Hour":8,"Miniute":30,"$type":"SlotTimeDTO"},"EndTime":{"Hour":9,"Miniute":30,"$type":"SlotTimeDTO"},"$type":"SlotDTO"},{"SlotName":"string","StartTime":{"Hour":9,"Miniute":30,"$type":"SlotTimeDTO"},"EndTime":{"Hour":10,"Miniute":30,"$type":"SlotTimeDTO"},"$type":"SlotDTO"}],"$type":"DailySlotsDTO"},{"Day":"Tuesday","Slots":[{"SlotName":"string","StartTime":{"Hour":14,"Miniute":0,"$type":"SlotTimeDTO"},"EndTime":{"Hour":15,"Miniute":0,"$type":"SlotTimeDTO"},"$type":"SlotDTO"},{"SlotName":"string","StartTime":{"Hour":15,"Miniute":15,"$type":"SlotTimeDTO"},"EndTime":{"Hour":16,"Miniute":15,"$type":"SlotTimeDTO"},"$type":"SlotDTO"}],"$type":"DailySlotsDTO"}],"$type":"TermWeeklySlotsDTO"},"$type":"CreateTermCommand"}
+----------------------------------
+----------------------------------
+[22:28:23 INF] StudentRegistration.Application.Commands.CreateTermCommandHandler 
+CorrelationId: test1234 
+ Creating term {"Status":"Waiting","IsEnrollmentActive":false,"LectureDaysAndSlots":{"DailySlots":[{"Day":"Monday","Slots":[{"SlotName":"string","StartTime":{"Hour":8,"Miniute":30,"$type":"SlotTime"},"EndTime":{"Hour":9,"Miniute":30,"$type":"SlotTime"},"$type":"Slot"},{"SlotName":"string","StartTime":{"Hour":9,"Miniute":30,"$type":"SlotTime"},"EndTime":{"Hour":10,"Miniute":30,"$type":"SlotTime"},"$type":"Slot"}],"$type":"DailySlots"},{"Day":"Tuesday","Slots":[{"SlotName":"string","StartTime":{"Hour":14,"Miniute":0,"$type":"SlotTime"},"EndTime":{"Hour":15,"Miniute":0,"$type":"SlotTime"},"$type":"Slot"},{"SlotName":"string","StartTime":{"Hour":15,"Miniute":15,"$type":"SlotTime"},"EndTime":{"Hour":16,"Miniute":15,"$type":"SlotTime"},"$type":"Slot"}],"$type":"DailySlots"}],"$type":"TermWeeklySlots"},"Semester":{"SemesterType":"Fall","Year":2022,"$type":"Semester"},"DomainEvents":null,"Id":0,"$type":"Term"}
+----------------------------------
+----------------------------------
+[22:28:23 ERR]  
+CorrelationId: test1234 
+ Exception
+Microsoft.Data.Sqlite.SqliteException (0x80004005): SQLite Error 14: 'unable to open database file'.
+   at Microsoft.Data.Sqlite.SqliteException.ThrowExceptionForRC(Int32 rc, sqlite3 db)
+   at Microsoft.Data.Sqlite.SqliteConnectionInternal..ctor(SqliteConnectionStringBuilder connectionOptions, SqliteConnectionPool pool)
+   at Microsoft.Data.Sqlite.SqliteConnectionPool.GetConnection()
+   at Microsoft.Data.Sqlite.SqliteConnectionFactory.GetConnection(SqliteConnection outerConnection)
+   at Microsoft.Data.Sqlite.SqliteConnection.Open()
+   at System.Data.Common.DbConnection.OpenAsync(CancellationToken cancellationToken)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenAsync(CancellationToken cancellationToken, Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.BeginTransactionAsync(IsolationLevel isolationLevel, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.BeginTransactionAsync(CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at StudentRegistration.Infrastructure.StudentRegistrationContext.Save() in C:\Users\aydos\OneDrive\Masaüstü\Projects\StudentRegistration\src\Infrastructure\StudentRegistration.Infrastructure\StudentRegistrationContext.cs:line 60
+   at StudentRegistration.Application.Commands.CreateTermCommandHandler.Handle(CreateTermCommand request, CancellationToken cancellationToken) in C:\Users\aydos\OneDrive\Masaüstü\Projects\StudentRegistration\src\Core\StudentRegistration.Application\Commands\Term\CreateTerm\CreateTermCommandHandler.cs:line 33
+   at StudentRegistration.Application.Behaviors.ValidatonBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next) in C:\Users\aydos\OneDrive\Masaüstü\Projects\StudentRegistration\src\Core\StudentRegistration.Application\Behaviors\ValidationBehavior.cs:line 36
+   at StudentRegistration.Application.Behaviors.LoggingBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next) in C:\Users\aydos\OneDrive\Masaüstü\Projects\StudentRegistration\src\Core\StudentRegistration.Application\Behaviors\LoggingBehavior.cs:line 18
+   at MediatR.Pipeline.RequestExceptionProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at MediatR.Pipeline.RequestExceptionProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at MediatR.Pipeline.RequestExceptionActionProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at MediatR.Pipeline.RequestExceptionActionProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at MediatR.Pipeline.RequestPostProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at MediatR.Pipeline.RequestPreProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at StudentRegistration.WebApi.Controllers.TermController.CreateTerm(CreateTermCommand command) in C:\Users\aydos\OneDrive\Masaüstü\Projects\StudentRegistration\src\WebApi\StudentRegistration.WebApi\Controllers\TermController.cs:line 21
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at StudentRegistration.WebApi.Middlewares.ExceptionHandlerMiddleware.Invoke(HttpContext context) in C:\Users\aydos\OneDrive\Masaüstü\Projects\StudentRegistration\src\WebApi\StudentRegistration.WebApi\Middlewares\ExceptionHandlerMiddleware.cs:line 26
+----------------------------------
+----------------------------------
+[22:30:22 INF]  
+CorrelationId: test1234 
+ Handler Name CreateTermCommand 
+ Request: {"SemesterType":"Fall","Year":2022,"TermWeeklySlots":{"DailySlots":[{"Day":"Monday","Slots":[{"SlotName":"string","StartTime":{"Hour":8,"Miniute":30,"$type":"SlotTimeDTO"},"EndTime":{"Hour":9,"Miniute":30,"$type":"SlotTimeDTO"},"$type":"SlotDTO"},{"SlotName":"string","StartTime":{"Hour":9,"Miniute":30,"$type":"SlotTimeDTO"},"EndTime":{"Hour":10,"Miniute":30,"$type":"SlotTimeDTO"},"$type":"SlotDTO"}],"$type":"DailySlotsDTO"},{"Day":"Tuesday","Slots":[{"SlotName":"string","StartTime":{"Hour":14,"Miniute":0,"$type":"SlotTimeDTO"},"EndTime":{"Hour":15,"Miniute":0,"$type":"SlotTimeDTO"},"$type":"SlotDTO"},{"SlotName":"string","StartTime":{"Hour":15,"Miniute":15,"$type":"SlotTimeDTO"},"EndTime":{"Hour":16,"Miniute":15,"$type":"SlotTimeDTO"},"$type":"SlotDTO"}],"$type":"DailySlotsDTO"}],"$type":"TermWeeklySlotsDTO"},"$type":"CreateTermCommand"}
+----------------------------------
+----------------------------------
+[22:30:23 INF] StudentRegistration.Application.Commands.CreateTermCommandHandler 
+CorrelationId: test1234 
+ Creating term {"Status":"Waiting","IsEnrollmentActive":false,"LectureDaysAndSlots":{"DailySlots":[{"Day":"Monday","Slots":[{"SlotName":"string","StartTime":{"Hour":8,"Miniute":30,"$type":"SlotTime"},"EndTime":{"Hour":9,"Miniute":30,"$type":"SlotTime"},"$type":"Slot"},{"SlotName":"string","StartTime":{"Hour":9,"Miniute":30,"$type":"SlotTime"},"EndTime":{"Hour":10,"Miniute":30,"$type":"SlotTime"},"$type":"Slot"}],"$type":"DailySlots"},{"Day":"Tuesday","Slots":[{"SlotName":"string","StartTime":{"Hour":14,"Miniute":0,"$type":"SlotTime"},"EndTime":{"Hour":15,"Miniute":0,"$type":"SlotTime"},"$type":"Slot"},{"SlotName":"string","StartTime":{"Hour":15,"Miniute":15,"$type":"SlotTime"},"EndTime":{"Hour":16,"Miniute":15,"$type":"SlotTime"},"$type":"Slot"}],"$type":"DailySlots"}],"$type":"TermWeeklySlots"},"Semester":{"SemesterType":"Fall","Year":2022,"$type":"Semester"},"DomainEvents":null,"Id":0,"$type":"Term"}
+----------------------------------
+----------------------------------
+[22:30:24 ERR]  
+CorrelationId: test1234 
+ Exception
+Microsoft.Data.Sqlite.SqliteException (0x80004005): SQLite Error 14: 'unable to open database file'.
+   at Microsoft.Data.Sqlite.SqliteException.ThrowExceptionForRC(Int32 rc, sqlite3 db)
+   at Microsoft.Data.Sqlite.SqliteConnectionInternal..ctor(SqliteConnectionStringBuilder connectionOptions, SqliteConnectionPool pool)
+   at Microsoft.Data.Sqlite.SqliteConnectionPool.GetConnection()
+   at Microsoft.Data.Sqlite.SqliteConnectionFactory.GetConnection(SqliteConnection outerConnection)
+   at Microsoft.Data.Sqlite.SqliteConnection.Open()
+   at System.Data.Common.DbConnection.OpenAsync(CancellationToken cancellationToken)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenAsync(CancellationToken cancellationToken, Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.BeginTransactionAsync(IsolationLevel isolationLevel, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.BeginTransactionAsync(CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at StudentRegistration.Infrastructure.StudentRegistrationContext.Save() in C:\Users\aydos\OneDrive\Masaüstü\Projects\StudentRegistration\src\Infrastructure\StudentRegistration.Infrastructure\StudentRegistrationContext.cs:line 60
+   at StudentRegistration.Application.Commands.CreateTermCommandHandler.Handle(CreateTermCommand request, CancellationToken cancellationToken) in C:\Users\aydos\OneDrive\Masaüstü\Projects\StudentRegistration\src\Core\StudentRegistration.Application\Commands\Term\CreateTerm\CreateTermCommandHandler.cs:line 33
+   at StudentRegistration.Application.Behaviors.ValidatonBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next) in C:\Users\aydos\OneDrive\Masaüstü\Projects\StudentRegistration\src\Core\StudentRegistration.Application\Behaviors\ValidationBehavior.cs:line 36
+   at StudentRegistration.Application.Behaviors.LoggingBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next) in C:\Users\aydos\OneDrive\Masaüstü\Projects\StudentRegistration\src\Core\StudentRegistration.Application\Behaviors\LoggingBehavior.cs:line 18
+   at MediatR.Pipeline.RequestExceptionProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at MediatR.Pipeline.RequestExceptionProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at MediatR.Pipeline.RequestExceptionActionProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at MediatR.Pipeline.RequestExceptionActionProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at MediatR.Pipeline.RequestPostProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at MediatR.Pipeline.RequestPreProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at StudentRegistration.WebApi.Controllers.TermController.CreateTerm(CreateTermCommand command) in C:\Users\aydos\OneDrive\Masaüstü\Projects\StudentRegistration\src\WebApi\StudentRegistration.WebApi\Controllers\TermController.cs:line 21
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at StudentRegistration.WebApi.Middlewares.ExceptionHandlerMiddleware.Invoke(HttpContext context) in C:\Users\aydos\OneDrive\Masaüstü\Projects\StudentRegistration\src\WebApi\StudentRegistration.WebApi\Middlewares\ExceptionHandlerMiddleware.cs:line 26
+----------------------------------
+----------------------------------
+[22:31:02 INF]  
+CorrelationId: test1234 
+ Handler Name CreateTermCommand 
+ Request: {"SemesterType":"Fall","Year":2022,"TermWeeklySlots":{"DailySlots":[{"Day":"Monday","Slots":[{"SlotName":"string","StartTime":{"Hour":8,"Miniute":30,"$type":"SlotTimeDTO"},"EndTime":{"Hour":9,"Miniute":30,"$type":"SlotTimeDTO"},"$type":"SlotDTO"},{"SlotName":"string","StartTime":{"Hour":9,"Miniute":30,"$type":"SlotTimeDTO"},"EndTime":{"Hour":10,"Miniute":30,"$type":"SlotTimeDTO"},"$type":"SlotDTO"}],"$type":"DailySlotsDTO"},{"Day":"Tuesday","Slots":[{"SlotName":"string","StartTime":{"Hour":14,"Miniute":0,"$type":"SlotTimeDTO"},"EndTime":{"Hour":15,"Miniute":0,"$type":"SlotTimeDTO"},"$type":"SlotDTO"},{"SlotName":"string","StartTime":{"Hour":15,"Miniute":15,"$type":"SlotTimeDTO"},"EndTime":{"Hour":16,"Miniute":15,"$type":"SlotTimeDTO"},"$type":"SlotDTO"}],"$type":"DailySlotsDTO"}],"$type":"TermWeeklySlotsDTO"},"$type":"CreateTermCommand"}
+----------------------------------
+----------------------------------
+[22:31:03 INF] StudentRegistration.Application.Commands.CreateTermCommandHandler 
+CorrelationId: test1234 
+ Creating term {"Status":"Waiting","IsEnrollmentActive":false,"LectureDaysAndSlots":{"DailySlots":[{"Day":"Monday","Slots":[{"SlotName":"string","StartTime":{"Hour":8,"Miniute":30,"$type":"SlotTime"},"EndTime":{"Hour":9,"Miniute":30,"$type":"SlotTime"},"$type":"Slot"},{"SlotName":"string","StartTime":{"Hour":9,"Miniute":30,"$type":"SlotTime"},"EndTime":{"Hour":10,"Miniute":30,"$type":"SlotTime"},"$type":"Slot"}],"$type":"DailySlots"},{"Day":"Tuesday","Slots":[{"SlotName":"string","StartTime":{"Hour":14,"Miniute":0,"$type":"SlotTime"},"EndTime":{"Hour":15,"Miniute":0,"$type":"SlotTime"},"$type":"Slot"},{"SlotName":"string","StartTime":{"Hour":15,"Miniute":15,"$type":"SlotTime"},"EndTime":{"Hour":16,"Miniute":15,"$type":"SlotTime"},"$type":"Slot"}],"$type":"DailySlots"}],"$type":"TermWeeklySlots"},"Semester":{"SemesterType":"Fall","Year":2022,"$type":"Semester"},"DomainEvents":null,"Id":0,"$type":"Term"}
+----------------------------------
+----------------------------------
+[22:31:04 ERR]  
+CorrelationId: test1234 
+ Exception
+Microsoft.Data.Sqlite.SqliteException (0x80004005): SQLite Error 14: 'unable to open database file'.
+   at Microsoft.Data.Sqlite.SqliteException.ThrowExceptionForRC(Int32 rc, sqlite3 db)
+   at Microsoft.Data.Sqlite.SqliteConnectionInternal..ctor(SqliteConnectionStringBuilder connectionOptions, SqliteConnectionPool pool)
+   at Microsoft.Data.Sqlite.SqliteConnectionPool.GetConnection()
+   at Microsoft.Data.Sqlite.SqliteConnectionFactory.GetConnection(SqliteConnection outerConnection)
+   at Microsoft.Data.Sqlite.SqliteConnection.Open()
+   at System.Data.Common.DbConnection.OpenAsync(CancellationToken cancellationToken)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenAsync(CancellationToken cancellationToken, Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.BeginTransactionAsync(IsolationLevel isolationLevel, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.BeginTransactionAsync(CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at StudentRegistration.Infrastructure.StudentRegistrationContext.Save() in C:\Users\aydos\OneDrive\Masaüstü\Projects\StudentRegistration\src\Infrastructure\StudentRegistration.Infrastructure\StudentRegistrationContext.cs:line 60
+   at StudentRegistration.Application.Commands.CreateTermCommandHandler.Handle(CreateTermCommand request, CancellationToken cancellationToken) in C:\Users\aydos\OneDrive\Masaüstü\Projects\StudentRegistration\src\Core\StudentRegistration.Application\Commands\Term\CreateTerm\CreateTermCommandHandler.cs:line 33
+   at StudentRegistration.Application.Behaviors.ValidatonBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next) in C:\Users\aydos\OneDrive\Masaüstü\Projects\StudentRegistration\src\Core\StudentRegistration.Application\Behaviors\ValidationBehavior.cs:line 36
+   at StudentRegistration.Application.Behaviors.LoggingBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next) in C:\Users\aydos\OneDrive\Masaüstü\Projects\StudentRegistration\src\Core\StudentRegistration.Application\Behaviors\LoggingBehavior.cs:line 18
+   at MediatR.Pipeline.RequestExceptionProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at MediatR.Pipeline.RequestExceptionProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at MediatR.Pipeline.RequestExceptionActionProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at MediatR.Pipeline.RequestExceptionActionProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at MediatR.Pipeline.RequestPostProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at MediatR.Pipeline.RequestPreProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at StudentRegistration.WebApi.Controllers.TermController.CreateTerm(CreateTermCommand command) in C:\Users\aydos\OneDrive\Masaüstü\Projects\StudentRegistration\src\WebApi\StudentRegistration.WebApi\Controllers\TermController.cs:line 21
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at StudentRegistration.WebApi.Middlewares.ExceptionHandlerMiddleware.Invoke(HttpContext context) in C:\Users\aydos\OneDrive\Masaüstü\Projects\StudentRegistration\src\WebApi\StudentRegistration.WebApi\Middlewares\ExceptionHandlerMiddleware.cs:line 26
+----------------------------------
+----------------------------------
+[22:32:28 INF]  
+CorrelationId: test1234 
+ Handler Name CreateTermCommand 
+ Request: {"SemesterType":"Fall","Year":2022,"TermWeeklySlots":{"DailySlots":[{"Day":"Monday","Slots":[{"SlotName":"string","StartTime":{"Hour":8,"Miniute":30,"$type":"SlotTimeDTO"},"EndTime":{"Hour":9,"Miniute":30,"$type":"SlotTimeDTO"},"$type":"SlotDTO"},{"SlotName":"string","StartTime":{"Hour":9,"Miniute":30,"$type":"SlotTimeDTO"},"EndTime":{"Hour":10,"Miniute":30,"$type":"SlotTimeDTO"},"$type":"SlotDTO"}],"$type":"DailySlotsDTO"},{"Day":"Tuesday","Slots":[{"SlotName":"string","StartTime":{"Hour":14,"Miniute":0,"$type":"SlotTimeDTO"},"EndTime":{"Hour":15,"Miniute":0,"$type":"SlotTimeDTO"},"$type":"SlotDTO"},{"SlotName":"string","StartTime":{"Hour":15,"Miniute":15,"$type":"SlotTimeDTO"},"EndTime":{"Hour":16,"Miniute":15,"$type":"SlotTimeDTO"},"$type":"SlotDTO"}],"$type":"DailySlotsDTO"}],"$type":"TermWeeklySlotsDTO"},"$type":"CreateTermCommand"}
+----------------------------------
+----------------------------------
+[22:32:29 INF] StudentRegistration.Application.Commands.CreateTermCommandHandler 
+CorrelationId: test1234 
+ Creating term {"Status":"Waiting","IsEnrollmentActive":false,"LectureDaysAndSlots":{"DailySlots":[{"Day":"Monday","Slots":[{"SlotName":"string","StartTime":{"Hour":8,"Miniute":30,"$type":"SlotTime"},"EndTime":{"Hour":9,"Miniute":30,"$type":"SlotTime"},"$type":"Slot"},{"SlotName":"string","StartTime":{"Hour":9,"Miniute":30,"$type":"SlotTime"},"EndTime":{"Hour":10,"Miniute":30,"$type":"SlotTime"},"$type":"Slot"}],"$type":"DailySlots"},{"Day":"Tuesday","Slots":[{"SlotName":"string","StartTime":{"Hour":14,"Miniute":0,"$type":"SlotTime"},"EndTime":{"Hour":15,"Miniute":0,"$type":"SlotTime"},"$type":"Slot"},{"SlotName":"string","StartTime":{"Hour":15,"Miniute":15,"$type":"SlotTime"},"EndTime":{"Hour":16,"Miniute":15,"$type":"SlotTime"},"$type":"Slot"}],"$type":"DailySlots"}],"$type":"TermWeeklySlots"},"Semester":{"SemesterType":"Fall","Year":2022,"$type":"Semester"},"DomainEvents":null,"Id":0,"$type":"Term"}
+----------------------------------
+----------------------------------
+[22:32:29 INF]  
+CorrelationId: test1234 
+ Handler Name CreateTermCommand 
+ Response: 32
+----------------------------------
+----------------------------------
+[22:37:03 INF]  
+CorrelationId: test1234 
+ Handler Name CreateTermCommand 
+ Request: {"SemesterType":"Fall","Year":2022,"TermWeeklySlots":{"DailySlots":[{"Day":"Monday","Slots":[{"SlotName":"string","StartTime":{"Hour":8,"Miniute":30,"$type":"SlotTimeDTO"},"EndTime":{"Hour":9,"Miniute":30,"$type":"SlotTimeDTO"},"$type":"SlotDTO"},{"SlotName":"string","StartTime":{"Hour":9,"Miniute":30,"$type":"SlotTimeDTO"},"EndTime":{"Hour":10,"Miniute":30,"$type":"SlotTimeDTO"},"$type":"SlotDTO"}],"$type":"DailySlotsDTO"},{"Day":"Tuesday","Slots":[{"SlotName":"string","StartTime":{"Hour":14,"Miniute":0,"$type":"SlotTimeDTO"},"EndTime":{"Hour":15,"Miniute":0,"$type":"SlotTimeDTO"},"$type":"SlotDTO"},{"SlotName":"string","StartTime":{"Hour":15,"Miniute":15,"$type":"SlotTimeDTO"},"EndTime":{"Hour":16,"Miniute":15,"$type":"SlotTimeDTO"},"$type":"SlotDTO"}],"$type":"DailySlotsDTO"}],"$type":"TermWeeklySlotsDTO"},"$type":"CreateTermCommand"}
+----------------------------------
+----------------------------------
+[22:37:04 INF] StudentRegistration.Application.Commands.CreateTermCommandHandler 
+CorrelationId: test1234 
+ Creating term {"Status":"Waiting","IsEnrollmentActive":false,"LectureDaysAndSlots":{"DailySlots":[{"Day":"Monday","Slots":[{"SlotName":"string","StartTime":{"Hour":8,"Miniute":30,"$type":"SlotTime"},"EndTime":{"Hour":9,"Miniute":30,"$type":"SlotTime"},"$type":"Slot"},{"SlotName":"string","StartTime":{"Hour":9,"Miniute":30,"$type":"SlotTime"},"EndTime":{"Hour":10,"Miniute":30,"$type":"SlotTime"},"$type":"Slot"}],"$type":"DailySlots"},{"Day":"Tuesday","Slots":[{"SlotName":"string","StartTime":{"Hour":14,"Miniute":0,"$type":"SlotTime"},"EndTime":{"Hour":15,"Miniute":0,"$type":"SlotTime"},"$type":"Slot"},{"SlotName":"string","StartTime":{"Hour":15,"Miniute":15,"$type":"SlotTime"},"EndTime":{"Hour":16,"Miniute":15,"$type":"SlotTime"},"$type":"Slot"}],"$type":"DailySlots"}],"$type":"TermWeeklySlots"},"Semester":{"SemesterType":"Fall","Year":2022,"$type":"Semester"},"DomainEvents":null,"Id":0,"$type":"Term"}
+----------------------------------
+----------------------------------
+[22:37:04 ERR]  
+CorrelationId: test1234 
+ Exception
+Microsoft.Data.Sqlite.SqliteException (0x80004005): SQLite Error 14: 'unable to open database file'.
+   at Microsoft.Data.Sqlite.SqliteException.ThrowExceptionForRC(Int32 rc, sqlite3 db)
+   at Microsoft.Data.Sqlite.SqliteConnectionInternal..ctor(SqliteConnectionStringBuilder connectionOptions, SqliteConnectionPool pool)
+   at Microsoft.Data.Sqlite.SqliteConnectionPool.GetConnection()
+   at Microsoft.Data.Sqlite.SqliteConnectionFactory.GetConnection(SqliteConnection outerConnection)
+   at Microsoft.Data.Sqlite.SqliteConnection.Open()
+   at System.Data.Common.DbConnection.OpenAsync(CancellationToken cancellationToken)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenAsync(CancellationToken cancellationToken, Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.BeginTransactionAsync(IsolationLevel isolationLevel, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.BeginTransactionAsync(CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at StudentRegistration.Infrastructure.StudentRegistrationContext.Save() in C:\Users\aydos\OneDrive\Masaüstü\Projects\StudentRegistration\src\Infrastructure\StudentRegistration.Infrastructure\StudentRegistrationContext.cs:line 60
+   at StudentRegistration.Application.Commands.CreateTermCommandHandler.Handle(CreateTermCommand request, CancellationToken cancellationToken) in C:\Users\aydos\OneDrive\Masaüstü\Projects\StudentRegistration\src\Core\StudentRegistration.Application\Commands\Term\CreateTerm\CreateTermCommandHandler.cs:line 33
+   at StudentRegistration.Application.Behaviors.ValidatonBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next) in C:\Users\aydos\OneDrive\Masaüstü\Projects\StudentRegistration\src\Core\StudentRegistration.Application\Behaviors\ValidationBehavior.cs:line 36
+   at StudentRegistration.Application.Behaviors.LoggingBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next) in C:\Users\aydos\OneDrive\Masaüstü\Projects\StudentRegistration\src\Core\StudentRegistration.Application\Behaviors\LoggingBehavior.cs:line 18
+   at MediatR.Pipeline.RequestExceptionProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at MediatR.Pipeline.RequestExceptionProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at MediatR.Pipeline.RequestExceptionActionProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at MediatR.Pipeline.RequestExceptionActionProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at MediatR.Pipeline.RequestPostProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at MediatR.Pipeline.RequestPreProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at StudentRegistration.WebApi.Controllers.TermController.CreateTerm(CreateTermCommand command) in C:\Users\aydos\OneDrive\Masaüstü\Projects\StudentRegistration\src\WebApi\StudentRegistration.WebApi\Controllers\TermController.cs:line 21
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at StudentRegistration.WebApi.Middlewares.ExceptionHandlerMiddleware.Invoke(HttpContext context) in C:\Users\aydos\OneDrive\Masaüstü\Projects\StudentRegistration\src\WebApi\StudentRegistration.WebApi\Middlewares\ExceptionHandlerMiddleware.cs:line 26
+----------------------------------
+----------------------------------
+[22:42:11 INF]  
+CorrelationId: test1234 
+ Handler Name CreateTermCommand 
+ Request: {"SemesterType":"Fall","Year":2022,"TermWeeklySlots":{"DailySlots":[{"Day":"Monday","Slots":[{"SlotName":"string","StartTime":{"Hour":8,"Miniute":30,"$type":"SlotTimeDTO"},"EndTime":{"Hour":9,"Miniute":30,"$type":"SlotTimeDTO"},"$type":"SlotDTO"},{"SlotName":"string","StartTime":{"Hour":9,"Miniute":30,"$type":"SlotTimeDTO"},"EndTime":{"Hour":10,"Miniute":30,"$type":"SlotTimeDTO"},"$type":"SlotDTO"}],"$type":"DailySlotsDTO"},{"Day":"Tuesday","Slots":[{"SlotName":"string","StartTime":{"Hour":14,"Miniute":0,"$type":"SlotTimeDTO"},"EndTime":{"Hour":15,"Miniute":0,"$type":"SlotTimeDTO"},"$type":"SlotDTO"},{"SlotName":"string","StartTime":{"Hour":15,"Miniute":15,"$type":"SlotTimeDTO"},"EndTime":{"Hour":16,"Miniute":15,"$type":"SlotTimeDTO"},"$type":"SlotDTO"}],"$type":"DailySlotsDTO"}],"$type":"TermWeeklySlotsDTO"},"$type":"CreateTermCommand"}
+----------------------------------
+----------------------------------
+[22:42:12 INF] StudentRegistration.Application.Commands.CreateTermCommandHandler 
+CorrelationId: test1234 
+ Creating term {"Status":"Waiting","IsEnrollmentActive":false,"LectureDaysAndSlots":{"DailySlots":[{"Day":"Monday","Slots":[{"SlotName":"string","StartTime":{"Hour":8,"Miniute":30,"$type":"SlotTime"},"EndTime":{"Hour":9,"Miniute":30,"$type":"SlotTime"},"$type":"Slot"},{"SlotName":"string","StartTime":{"Hour":9,"Miniute":30,"$type":"SlotTime"},"EndTime":{"Hour":10,"Miniute":30,"$type":"SlotTime"},"$type":"Slot"}],"$type":"DailySlots"},{"Day":"Tuesday","Slots":[{"SlotName":"string","StartTime":{"Hour":14,"Miniute":0,"$type":"SlotTime"},"EndTime":{"Hour":15,"Miniute":0,"$type":"SlotTime"},"$type":"Slot"},{"SlotName":"string","StartTime":{"Hour":15,"Miniute":15,"$type":"SlotTime"},"EndTime":{"Hour":16,"Miniute":15,"$type":"SlotTime"},"$type":"Slot"}],"$type":"DailySlots"}],"$type":"TermWeeklySlots"},"Semester":{"SemesterType":"Fall","Year":2022,"$type":"Semester"},"DomainEvents":null,"Id":0,"$type":"Term"}
+----------------------------------
+----------------------------------
+[22:42:12 ERR]  
+CorrelationId: test1234 
+ Exception
+Microsoft.Data.Sqlite.SqliteException (0x80004005): SQLite Error 14: 'unable to open database file'.
+   at Microsoft.Data.Sqlite.SqliteException.ThrowExceptionForRC(Int32 rc, sqlite3 db)
+   at Microsoft.Data.Sqlite.SqliteConnectionInternal..ctor(SqliteConnectionStringBuilder connectionOptions, SqliteConnectionPool pool)
+   at Microsoft.Data.Sqlite.SqliteConnectionPool.GetConnection()
+   at Microsoft.Data.Sqlite.SqliteConnectionFactory.GetConnection(SqliteConnection outerConnection)
+   at Microsoft.Data.Sqlite.SqliteConnection.Open()
+   at System.Data.Common.DbConnection.OpenAsync(CancellationToken cancellationToken)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenAsync(CancellationToken cancellationToken, Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.BeginTransactionAsync(IsolationLevel isolationLevel, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.BeginTransactionAsync(CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at StudentRegistration.Infrastructure.StudentRegistrationContext.Save() in C:\Users\aydos\OneDrive\Masaüstü\Projects\StudentRegistration\src\Infrastructure\StudentRegistration.Infrastructure\StudentRegistrationContext.cs:line 60
+   at StudentRegistration.Application.Commands.CreateTermCommandHandler.Handle(CreateTermCommand request, CancellationToken cancellationToken) in C:\Users\aydos\OneDrive\Masaüstü\Projects\StudentRegistration\src\Core\StudentRegistration.Application\Commands\Term\CreateTerm\CreateTermCommandHandler.cs:line 33
+   at StudentRegistration.Application.Behaviors.ValidatonBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next) in C:\Users\aydos\OneDrive\Masaüstü\Projects\StudentRegistration\src\Core\StudentRegistration.Application\Behaviors\ValidationBehavior.cs:line 36
+   at StudentRegistration.Application.Behaviors.LoggingBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next) in C:\Users\aydos\OneDrive\Masaüstü\Projects\StudentRegistration\src\Core\StudentRegistration.Application\Behaviors\LoggingBehavior.cs:line 18
+   at MediatR.Pipeline.RequestExceptionProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at MediatR.Pipeline.RequestExceptionProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at MediatR.Pipeline.RequestExceptionActionProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at MediatR.Pipeline.RequestExceptionActionProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at MediatR.Pipeline.RequestPostProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at MediatR.Pipeline.RequestPreProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at StudentRegistration.WebApi.Controllers.TermController.CreateTerm(CreateTermCommand command) in C:\Users\aydos\OneDrive\Masaüstü\Projects\StudentRegistration\src\WebApi\StudentRegistration.WebApi\Controllers\TermController.cs:line 21
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at StudentRegistration.WebApi.Middlewares.ExceptionHandlerMiddleware.Invoke(HttpContext context) in C:\Users\aydos\OneDrive\Masaüstü\Projects\StudentRegistration\src\WebApi\StudentRegistration.WebApi\Middlewares\ExceptionHandlerMiddleware.cs:line 26
+----------------------------------
+----------------------------------
+[22:42:45 INF]  
+CorrelationId: test1234 
+ Handler Name CreateTermCommand 
+ Request: {"SemesterType":"Fall","Year":2022,"TermWeeklySlots":{"DailySlots":[{"Day":"Monday","Slots":[{"SlotName":"string","StartTime":{"Hour":8,"Miniute":30,"$type":"SlotTimeDTO"},"EndTime":{"Hour":9,"Miniute":30,"$type":"SlotTimeDTO"},"$type":"SlotDTO"},{"SlotName":"string","StartTime":{"Hour":9,"Miniute":30,"$type":"SlotTimeDTO"},"EndTime":{"Hour":10,"Miniute":30,"$type":"SlotTimeDTO"},"$type":"SlotDTO"}],"$type":"DailySlotsDTO"},{"Day":"Tuesday","Slots":[{"SlotName":"string","StartTime":{"Hour":14,"Miniute":0,"$type":"SlotTimeDTO"},"EndTime":{"Hour":15,"Miniute":0,"$type":"SlotTimeDTO"},"$type":"SlotDTO"},{"SlotName":"string","StartTime":{"Hour":15,"Miniute":15,"$type":"SlotTimeDTO"},"EndTime":{"Hour":16,"Miniute":15,"$type":"SlotTimeDTO"},"$type":"SlotDTO"}],"$type":"DailySlotsDTO"}],"$type":"TermWeeklySlotsDTO"},"$type":"CreateTermCommand"}
+----------------------------------
+----------------------------------
+[22:42:46 INF] StudentRegistration.Application.Commands.CreateTermCommandHandler 
+CorrelationId: test1234 
+ Creating term {"Status":"Waiting","IsEnrollmentActive":false,"LectureDaysAndSlots":{"DailySlots":[{"Day":"Monday","Slots":[{"SlotName":"string","StartTime":{"Hour":8,"Miniute":30,"$type":"SlotTime"},"EndTime":{"Hour":9,"Miniute":30,"$type":"SlotTime"},"$type":"Slot"},{"SlotName":"string","StartTime":{"Hour":9,"Miniute":30,"$type":"SlotTime"},"EndTime":{"Hour":10,"Miniute":30,"$type":"SlotTime"},"$type":"Slot"}],"$type":"DailySlots"},{"Day":"Tuesday","Slots":[{"SlotName":"string","StartTime":{"Hour":14,"Miniute":0,"$type":"SlotTime"},"EndTime":{"Hour":15,"Miniute":0,"$type":"SlotTime"},"$type":"Slot"},{"SlotName":"string","StartTime":{"Hour":15,"Miniute":15,"$type":"SlotTime"},"EndTime":{"Hour":16,"Miniute":15,"$type":"SlotTime"},"$type":"Slot"}],"$type":"DailySlots"}],"$type":"TermWeeklySlots"},"Semester":{"SemesterType":"Fall","Year":2022,"$type":"Semester"},"DomainEvents":null,"Id":0,"$type":"Term"}
+----------------------------------
+----------------------------------
+[22:42:46 ERR]  
+CorrelationId: test1234 
+ Exception
+Microsoft.Data.Sqlite.SqliteException (0x80004005): SQLite Error 14: 'unable to open database file'.
+   at Microsoft.Data.Sqlite.SqliteException.ThrowExceptionForRC(Int32 rc, sqlite3 db)
+   at Microsoft.Data.Sqlite.SqliteConnectionInternal..ctor(SqliteConnectionStringBuilder connectionOptions, SqliteConnectionPool pool)
+   at Microsoft.Data.Sqlite.SqliteConnectionPool.GetConnection()
+   at Microsoft.Data.Sqlite.SqliteConnectionFactory.GetConnection(SqliteConnection outerConnection)
+   at Microsoft.Data.Sqlite.SqliteConnection.Open()
+   at System.Data.Common.DbConnection.OpenAsync(CancellationToken cancellationToken)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenAsync(CancellationToken cancellationToken, Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.BeginTransactionAsync(IsolationLevel isolationLevel, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.BeginTransactionAsync(CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at StudentRegistration.Infrastructure.StudentRegistrationContext.Save() in C:\Users\aydos\OneDrive\Masaüstü\Projects\StudentRegistration\src\Infrastructure\StudentRegistration.Infrastructure\StudentRegistrationContext.cs:line 60
+   at StudentRegistration.Application.Commands.CreateTermCommandHandler.Handle(CreateTermCommand request, CancellationToken cancellationToken) in C:\Users\aydos\OneDrive\Masaüstü\Projects\StudentRegistration\src\Core\StudentRegistration.Application\Commands\Term\CreateTerm\CreateTermCommandHandler.cs:line 33
+   at StudentRegistration.Application.Behaviors.ValidatonBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next) in C:\Users\aydos\OneDrive\Masaüstü\Projects\StudentRegistration\src\Core\StudentRegistration.Application\Behaviors\ValidationBehavior.cs:line 36
+   at StudentRegistration.Application.Behaviors.LoggingBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next) in C:\Users\aydos\OneDrive\Masaüstü\Projects\StudentRegistration\src\Core\StudentRegistration.Application\Behaviors\LoggingBehavior.cs:line 18
+   at MediatR.Pipeline.RequestExceptionProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at MediatR.Pipeline.RequestExceptionProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at MediatR.Pipeline.RequestExceptionActionProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at MediatR.Pipeline.RequestExceptionActionProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at MediatR.Pipeline.RequestPostProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at MediatR.Pipeline.RequestPreProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at StudentRegistration.WebApi.Controllers.TermController.CreateTerm(CreateTermCommand command) in C:\Users\aydos\OneDrive\Masaüstü\Projects\StudentRegistration\src\WebApi\StudentRegistration.WebApi\Controllers\TermController.cs:line 21
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at StudentRegistration.WebApi.Middlewares.ExceptionHandlerMiddleware.Invoke(HttpContext context) in C:\Users\aydos\OneDrive\Masaüstü\Projects\StudentRegistration\src\WebApi\StudentRegistration.WebApi\Middlewares\ExceptionHandlerMiddleware.cs:line 26
+----------------------------------
+----------------------------------
+[22:43:29 INF]  
+CorrelationId: test1234 
+ Handler Name CreateTermCommand 
+ Request: {"SemesterType":"Fall","Year":2022,"TermWeeklySlots":{"DailySlots":[{"Day":"Monday","Slots":[{"SlotName":"string","StartTime":{"Hour":8,"Miniute":30,"$type":"SlotTimeDTO"},"EndTime":{"Hour":9,"Miniute":30,"$type":"SlotTimeDTO"},"$type":"SlotDTO"},{"SlotName":"string","StartTime":{"Hour":9,"Miniute":30,"$type":"SlotTimeDTO"},"EndTime":{"Hour":10,"Miniute":30,"$type":"SlotTimeDTO"},"$type":"SlotDTO"}],"$type":"DailySlotsDTO"},{"Day":"Tuesday","Slots":[{"SlotName":"string","StartTime":{"Hour":14,"Miniute":0,"$type":"SlotTimeDTO"},"EndTime":{"Hour":15,"Miniute":0,"$type":"SlotTimeDTO"},"$type":"SlotDTO"},{"SlotName":"string","StartTime":{"Hour":15,"Miniute":15,"$type":"SlotTimeDTO"},"EndTime":{"Hour":16,"Miniute":15,"$type":"SlotTimeDTO"},"$type":"SlotDTO"}],"$type":"DailySlotsDTO"}],"$type":"TermWeeklySlotsDTO"},"$type":"CreateTermCommand"}
+----------------------------------
+----------------------------------
+[22:43:30 INF] StudentRegistration.Application.Commands.CreateTermCommandHandler 
+CorrelationId: test1234 
+ Creating term {"Status":"Waiting","IsEnrollmentActive":false,"LectureDaysAndSlots":{"DailySlots":[{"Day":"Monday","Slots":[{"SlotName":"string","StartTime":{"Hour":8,"Miniute":30,"$type":"SlotTime"},"EndTime":{"Hour":9,"Miniute":30,"$type":"SlotTime"},"$type":"Slot"},{"SlotName":"string","StartTime":{"Hour":9,"Miniute":30,"$type":"SlotTime"},"EndTime":{"Hour":10,"Miniute":30,"$type":"SlotTime"},"$type":"Slot"}],"$type":"DailySlots"},{"Day":"Tuesday","Slots":[{"SlotName":"string","StartTime":{"Hour":14,"Miniute":0,"$type":"SlotTime"},"EndTime":{"Hour":15,"Miniute":0,"$type":"SlotTime"},"$type":"Slot"},{"SlotName":"string","StartTime":{"Hour":15,"Miniute":15,"$type":"SlotTime"},"EndTime":{"Hour":16,"Miniute":15,"$type":"SlotTime"},"$type":"Slot"}],"$type":"DailySlots"}],"$type":"TermWeeklySlots"},"Semester":{"SemesterType":"Fall","Year":2022,"$type":"Semester"},"DomainEvents":null,"Id":0,"$type":"Term"}
+----------------------------------
+----------------------------------
+[22:43:30 ERR]  
+CorrelationId: test1234 
+ Exception
+Microsoft.Data.Sqlite.SqliteException (0x80004005): SQLite Error 14: 'unable to open database file'.
+   at Microsoft.Data.Sqlite.SqliteException.ThrowExceptionForRC(Int32 rc, sqlite3 db)
+   at Microsoft.Data.Sqlite.SqliteConnectionInternal..ctor(SqliteConnectionStringBuilder connectionOptions, SqliteConnectionPool pool)
+   at Microsoft.Data.Sqlite.SqliteConnectionPool.GetConnection()
+   at Microsoft.Data.Sqlite.SqliteConnectionFactory.GetConnection(SqliteConnection outerConnection)
+   at Microsoft.Data.Sqlite.SqliteConnection.Open()
+   at System.Data.Common.DbConnection.OpenAsync(CancellationToken cancellationToken)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenAsync(CancellationToken cancellationToken, Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.BeginTransactionAsync(IsolationLevel isolationLevel, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.BeginTransactionAsync(CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at StudentRegistration.Infrastructure.StudentRegistrationContext.Save() in C:\Users\aydos\OneDrive\Masaüstü\Projects\StudentRegistration\src\Infrastructure\StudentRegistration.Infrastructure\StudentRegistrationContext.cs:line 60
+   at StudentRegistration.Application.Commands.CreateTermCommandHandler.Handle(CreateTermCommand request, CancellationToken cancellationToken) in C:\Users\aydos\OneDrive\Masaüstü\Projects\StudentRegistration\src\Core\StudentRegistration.Application\Commands\Term\CreateTerm\CreateTermCommandHandler.cs:line 33
+   at StudentRegistration.Application.Behaviors.ValidatonBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next) in C:\Users\aydos\OneDrive\Masaüstü\Projects\StudentRegistration\src\Core\StudentRegistration.Application\Behaviors\ValidationBehavior.cs:line 36
+   at StudentRegistration.Application.Behaviors.LoggingBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next) in C:\Users\aydos\OneDrive\Masaüstü\Projects\StudentRegistration\src\Core\StudentRegistration.Application\Behaviors\LoggingBehavior.cs:line 18
+   at MediatR.Pipeline.RequestExceptionProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at MediatR.Pipeline.RequestExceptionProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at MediatR.Pipeline.RequestExceptionActionProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at MediatR.Pipeline.RequestExceptionActionProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at MediatR.Pipeline.RequestPostProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at MediatR.Pipeline.RequestPreProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at StudentRegistration.WebApi.Controllers.TermController.CreateTerm(CreateTermCommand command) in C:\Users\aydos\OneDrive\Masaüstü\Projects\StudentRegistration\src\WebApi\StudentRegistration.WebApi\Controllers\TermController.cs:line 21
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at StudentRegistration.WebApi.Middlewares.ExceptionHandlerMiddleware.Invoke(HttpContext context) in C:\Users\aydos\OneDrive\Masaüstü\Projects\StudentRegistration\src\WebApi\StudentRegistration.WebApi\Middlewares\ExceptionHandlerMiddleware.cs:line 26
+----------------------------------
+----------------------------------
+[22:47:10 INF]  
+CorrelationId: test1234 
+ Handler Name CreateTermCommand 
+ Request: {"SemesterType":"Fall","Year":2022,"TermWeeklySlots":{"DailySlots":[{"Day":"Monday","Slots":[{"SlotName":"string","StartTime":{"Hour":8,"Miniute":30,"$type":"SlotTimeDTO"},"EndTime":{"Hour":9,"Miniute":30,"$type":"SlotTimeDTO"},"$type":"SlotDTO"},{"SlotName":"string","StartTime":{"Hour":9,"Miniute":30,"$type":"SlotTimeDTO"},"EndTime":{"Hour":10,"Miniute":30,"$type":"SlotTimeDTO"},"$type":"SlotDTO"}],"$type":"DailySlotsDTO"},{"Day":"Tuesday","Slots":[{"SlotName":"string","StartTime":{"Hour":14,"Miniute":0,"$type":"SlotTimeDTO"},"EndTime":{"Hour":15,"Miniute":0,"$type":"SlotTimeDTO"},"$type":"SlotDTO"},{"SlotName":"string","StartTime":{"Hour":15,"Miniute":15,"$type":"SlotTimeDTO"},"EndTime":{"Hour":16,"Miniute":15,"$type":"SlotTimeDTO"},"$type":"SlotDTO"}],"$type":"DailySlotsDTO"}],"$type":"TermWeeklySlotsDTO"},"$type":"CreateTermCommand"}
+----------------------------------
+----------------------------------
+[22:47:11 INF] StudentRegistration.Application.Commands.CreateTermCommandHandler 
+CorrelationId: test1234 
+ Creating term {"Status":"Waiting","IsEnrollmentActive":false,"LectureDaysAndSlots":{"DailySlots":[{"Day":"Monday","Slots":[{"SlotName":"string","StartTime":{"Hour":8,"Miniute":30,"$type":"SlotTime"},"EndTime":{"Hour":9,"Miniute":30,"$type":"SlotTime"},"$type":"Slot"},{"SlotName":"string","StartTime":{"Hour":9,"Miniute":30,"$type":"SlotTime"},"EndTime":{"Hour":10,"Miniute":30,"$type":"SlotTime"},"$type":"Slot"}],"$type":"DailySlots"},{"Day":"Tuesday","Slots":[{"SlotName":"string","StartTime":{"Hour":14,"Miniute":0,"$type":"SlotTime"},"EndTime":{"Hour":15,"Miniute":0,"$type":"SlotTime"},"$type":"Slot"},{"SlotName":"string","StartTime":{"Hour":15,"Miniute":15,"$type":"SlotTime"},"EndTime":{"Hour":16,"Miniute":15,"$type":"SlotTime"},"$type":"Slot"}],"$type":"DailySlots"}],"$type":"TermWeeklySlots"},"Semester":{"SemesterType":"Fall","Year":2022,"$type":"Semester"},"DomainEvents":null,"Id":0,"$type":"Term"}
+----------------------------------
+----------------------------------
+[22:47:11 INF]  
+CorrelationId: test1234 
+ Handler Name CreateTermCommand 
+ Response: 33
+----------------------------------
+----------------------------------
+[22:48:16 INF]  
+CorrelationId: test1234 
+ Handler Name CreateTermCommand 
+ Request: {"SemesterType":"Fall","Year":2022,"TermWeeklySlots":{"DailySlots":[{"Day":"Monday","Slots":[{"SlotName":"string","StartTime":{"Hour":8,"Miniute":30,"$type":"SlotTimeDTO"},"EndTime":{"Hour":9,"Miniute":30,"$type":"SlotTimeDTO"},"$type":"SlotDTO"},{"SlotName":"string","StartTime":{"Hour":9,"Miniute":30,"$type":"SlotTimeDTO"},"EndTime":{"Hour":10,"Miniute":30,"$type":"SlotTimeDTO"},"$type":"SlotDTO"}],"$type":"DailySlotsDTO"},{"Day":"Tuesday","Slots":[{"SlotName":"string","StartTime":{"Hour":14,"Miniute":0,"$type":"SlotTimeDTO"},"EndTime":{"Hour":15,"Miniute":0,"$type":"SlotTimeDTO"},"$type":"SlotDTO"},{"SlotName":"string","StartTime":{"Hour":15,"Miniute":15,"$type":"SlotTimeDTO"},"EndTime":{"Hour":16,"Miniute":15,"$type":"SlotTimeDTO"},"$type":"SlotDTO"}],"$type":"DailySlotsDTO"}],"$type":"TermWeeklySlotsDTO"},"$type":"CreateTermCommand"}
+----------------------------------
+----------------------------------
+[22:48:17 INF] StudentRegistration.Application.Commands.CreateTermCommandHandler 
+CorrelationId: test1234 
+ Creating term {"Status":"Waiting","IsEnrollmentActive":false,"LectureDaysAndSlots":{"DailySlots":[{"Day":"Monday","Slots":[{"SlotName":"string","StartTime":{"Hour":8,"Miniute":30,"$type":"SlotTime"},"EndTime":{"Hour":9,"Miniute":30,"$type":"SlotTime"},"$type":"Slot"},{"SlotName":"string","StartTime":{"Hour":9,"Miniute":30,"$type":"SlotTime"},"EndTime":{"Hour":10,"Miniute":30,"$type":"SlotTime"},"$type":"Slot"}],"$type":"DailySlots"},{"Day":"Tuesday","Slots":[{"SlotName":"string","StartTime":{"Hour":14,"Miniute":0,"$type":"SlotTime"},"EndTime":{"Hour":15,"Miniute":0,"$type":"SlotTime"},"$type":"Slot"},{"SlotName":"string","StartTime":{"Hour":15,"Miniute":15,"$type":"SlotTime"},"EndTime":{"Hour":16,"Miniute":15,"$type":"SlotTime"},"$type":"Slot"}],"$type":"DailySlots"}],"$type":"TermWeeklySlots"},"Semester":{"SemesterType":"Fall","Year":2022,"$type":"Semester"},"DomainEvents":null,"Id":0,"$type":"Term"}
+----------------------------------
+----------------------------------
+[22:48:17 ERR]  
+CorrelationId: test1234 
+ Exception
+Microsoft.Data.Sqlite.SqliteException (0x80004005): SQLite Error 14: 'unable to open database file'.
+   at Microsoft.Data.Sqlite.SqliteException.ThrowExceptionForRC(Int32 rc, sqlite3 db)
+   at Microsoft.Data.Sqlite.SqliteConnectionInternal..ctor(SqliteConnectionStringBuilder connectionOptions, SqliteConnectionPool pool)
+   at Microsoft.Data.Sqlite.SqliteConnectionPool.GetConnection()
+   at Microsoft.Data.Sqlite.SqliteConnectionFactory.GetConnection(SqliteConnection outerConnection)
+   at Microsoft.Data.Sqlite.SqliteConnection.Open()
+   at System.Data.Common.DbConnection.OpenAsync(CancellationToken cancellationToken)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenAsync(CancellationToken cancellationToken, Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.BeginTransactionAsync(IsolationLevel isolationLevel, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.BeginTransactionAsync(CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at StudentRegistration.Infrastructure.StudentRegistrationContext.Save() in C:\Users\aydos\OneDrive\Masaüstü\Projects\StudentRegistration\src\Infrastructure\StudentRegistration.Infrastructure\StudentRegistrationContext.cs:line 60
+   at StudentRegistration.Application.Commands.CreateTermCommandHandler.Handle(CreateTermCommand request, CancellationToken cancellationToken) in C:\Users\aydos\OneDrive\Masaüstü\Projects\StudentRegistration\src\Core\StudentRegistration.Application\Commands\Term\CreateTerm\CreateTermCommandHandler.cs:line 33
+   at StudentRegistration.Application.Behaviors.ValidatonBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next) in C:\Users\aydos\OneDrive\Masaüstü\Projects\StudentRegistration\src\Core\StudentRegistration.Application\Behaviors\ValidationBehavior.cs:line 36
+   at StudentRegistration.Application.Behaviors.LoggingBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next) in C:\Users\aydos\OneDrive\Masaüstü\Projects\StudentRegistration\src\Core\StudentRegistration.Application\Behaviors\LoggingBehavior.cs:line 18
+   at MediatR.Pipeline.RequestExceptionProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at MediatR.Pipeline.RequestExceptionProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at MediatR.Pipeline.RequestExceptionActionProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at MediatR.Pipeline.RequestExceptionActionProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at MediatR.Pipeline.RequestPostProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at MediatR.Pipeline.RequestPreProcessorBehavior`2.Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate`1 next)
+   at StudentRegistration.WebApi.Controllers.TermController.CreateTerm(CreateTermCommand command) in C:\Users\aydos\OneDrive\Masaüstü\Projects\StudentRegistration\src\WebApi\StudentRegistration.WebApi\Controllers\TermController.cs:line 21
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at StudentRegistration.WebApi.Middlewares.ExceptionHandlerMiddleware.Invoke(HttpContext context) in C:\Users\aydos\OneDrive\Masaüstü\Projects\StudentRegistration\src\WebApi\StudentRegistration.WebApi\Middlewares\ExceptionHandlerMiddleware.cs:line 26
+----------------------------------
+----------------------------------
+[22:50:48 INF]  
+CorrelationId: test1234 
+ Handler Name CreateTermCommand 
+ Request: {"SemesterType":"Fall","Year":2022,"TermWeeklySlots":{"DailySlots":[{"Day":"Monday","Slots":[{"SlotName":"string","StartTime":{"Hour":8,"Miniute":30,"$type":"SlotTimeDTO"},"EndTime":{"Hour":9,"Miniute":30,"$type":"SlotTimeDTO"},"$type":"SlotDTO"},{"SlotName":"string","StartTime":{"Hour":9,"Miniute":30,"$type":"SlotTimeDTO"},"EndTime":{"Hour":10,"Miniute":30,"$type":"SlotTimeDTO"},"$type":"SlotDTO"}],"$type":"DailySlotsDTO"},{"Day":"Tuesday","Slots":[{"SlotName":"string","StartTime":{"Hour":14,"Miniute":0,"$type":"SlotTimeDTO"},"EndTime":{"Hour":15,"Miniute":0,"$type":"SlotTimeDTO"},"$type":"SlotDTO"},{"SlotName":"string","StartTime":{"Hour":15,"Miniute":15,"$type":"SlotTimeDTO"},"EndTime":{"Hour":16,"Miniute":15,"$type":"SlotTimeDTO"},"$type":"SlotDTO"}],"$type":"DailySlotsDTO"}],"$type":"TermWeeklySlotsDTO"},"$type":"CreateTermCommand"}
+----------------------------------
+----------------------------------
+[22:50:49 INF] StudentRegistration.Application.Commands.CreateTermCommandHandler 
+CorrelationId: test1234 
+ Creating term {"Status":"Waiting","IsEnrollmentActive":false,"LectureDaysAndSlots":{"DailySlots":[{"Day":"Monday","Slots":[{"SlotName":"string","StartTime":{"Hour":8,"Miniute":30,"$type":"SlotTime"},"EndTime":{"Hour":9,"Miniute":30,"$type":"SlotTime"},"$type":"Slot"},{"SlotName":"string","StartTime":{"Hour":9,"Miniute":30,"$type":"SlotTime"},"EndTime":{"Hour":10,"Miniute":30,"$type":"SlotTime"},"$type":"Slot"}],"$type":"DailySlots"},{"Day":"Tuesday","Slots":[{"SlotName":"string","StartTime":{"Hour":14,"Miniute":0,"$type":"SlotTime"},"EndTime":{"Hour":15,"Miniute":0,"$type":"SlotTime"},"$type":"Slot"},{"SlotName":"string","StartTime":{"Hour":15,"Miniute":15,"$type":"SlotTime"},"EndTime":{"Hour":16,"Miniute":15,"$type":"SlotTime"},"$type":"Slot"}],"$type":"DailySlots"}],"$type":"TermWeeklySlots"},"Semester":{"SemesterType":"Fall","Year":2022,"$type":"Semester"},"DomainEvents":null,"Id":0,"$type":"Term"}
+----------------------------------
+----------------------------------
+[22:50:50 INF]  
+CorrelationId: test1234 
+ Handler Name CreateTermCommand 
+ Response: 34
+----------------------------------

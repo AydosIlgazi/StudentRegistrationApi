@@ -1,7 +1,7 @@
 namespace StudentRegistration.Domain.ValueObjects;
 public class DailySlots : ValueObject
 {
-    public Day Day{get; init;} 
+    public Day Day { get; init; }
     private List<Slot> _slots;
     public IReadOnlyCollection<Slot> Slots => _slots;
     public DailySlots(List<Slot> slots)
@@ -9,20 +9,21 @@ public class DailySlots : ValueObject
         slots.Sort();
         Slot prevSlot = default(Slot);
         bool first = true;
-        foreach(Slot nextSlot in slots)
+        foreach (Slot nextSlot in slots)
         {
-            if(first){
-                first= false;
+            if (first) {
+                first = false;
             }
-            else{
-                if(prevSlot.EndTime.CompareTo(nextSlot.StartTime)==1){
+            else {
+                if (prevSlot.EndTime.CompareTo(nextSlot.StartTime) == 1) {
                     throw new StudentRegistrationDomainException("Slots are intercepting");
                 }
             }
-            prevSlot= nextSlot;
+            prevSlot = nextSlot;
         }
         _slots = slots;
     }
+    private DailySlots(){}
 
     protected override IEnumerable<object> GetEqualityComponents()
     {

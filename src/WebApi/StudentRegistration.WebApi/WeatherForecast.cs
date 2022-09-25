@@ -2,6 +2,7 @@ namespace StudentRegistration.WebApi;
 
 public class WeatherForecast
 {
+    public int Id { get;  set; }
     public DateTime Date { get; set; }
 
     public int TemperatureC { get; set; }
@@ -10,3 +11,20 @@ public class WeatherForecast
 
     public string? Summary { get; set; }
 }
+
+
+public record WeatherForecastX
+{
+
+    public int Id { get; init; }
+
+}
+
+public record WeatherForecastXs
+{
+
+    public List<WeatherForecastX> Ids { get; init; }
+
+
+}
+

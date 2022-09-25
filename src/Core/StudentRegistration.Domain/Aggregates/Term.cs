@@ -11,6 +11,7 @@ public class Term : AggregateRoot
 	public TermStatus Status => _status;
 	public bool IsEnrollmentActive => _isEnrollmentActive;
 	public TermWeeklySlots LectureDaysAndSlots => _lectureDaysAndSlots;
+	public Semester Semester => _semester;
 
 	public void StartTerm(){
 		if(_status == TermStatus.Active){
@@ -66,4 +67,5 @@ public class Term : AggregateRoot
 		_isEnrollmentActive = false;
 		_lectureDaysAndSlots = lectureDaysAndSlots;
 	}
+	private Term(){ }
 }

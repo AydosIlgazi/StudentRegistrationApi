@@ -1,0 +1,14 @@
+﻿global using StudentRegistration.Domain.Aggregates;
+global using StudentRegistration.Domain.Entities;
+global using StudentRegistration.Domain.ValueObjects;
+global using StudentRegistration.Domain.Services;
+global using StudentRegistration.Domain.Enums;
+global using StudentRegistration.Application.Repositories;
+global using StudentRegistration.Application.DTOs;
+global using StudentRegistration.Application.Commands;
+global using StudentRegistration.Application.Validations;
+global using StudentRegistration.Application.Behaviors;
+global using Serilog;
+global using MediatR;
+global using AutoMapper;
+global using FluentValidation;
